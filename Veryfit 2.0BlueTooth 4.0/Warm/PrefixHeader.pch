@@ -1,0 +1,48 @@
+//
+//  PrefixHeader.pch
+//  Warm
+//
+//  Created by 黄建华 on 15/8/3.
+//  Copyright (c) 2015年 kenny. All rights reserved.
+//
+
+#ifndef Warm_PrefixHeader_pch
+#define Warm_PrefixHeader_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#endif
+
+#ifdef __OBJC__
+
+#import "KKHeader.h"
+#import "LKDBHelper.h"
+#import "MBHUDHelper.h"
+#import "XYPopupViewHelper.h"
+
+// 数据模型
+#import "ShareData.h"
+#import "HotmoxibustionModel.h"
+
+
+#import "NavLabel.h"
+#import "ZJSwitch.h"
+#import "NavButton.h"
+
+#endif
+
+// 是否测试模式
+#define ISTESTMODEL 1
+
+#define AUTOFONTSIZE(s)     [UIFont systemFontOfSize:s]
+#define NAVFONTSIZE [UIFont systemFontOfSize:17.0]
+
+#define AUTOCOLORGRAY UIColorHEX(0xc7c7cd)
+#define AUTOCOLORBLACK UIColorHEX(0x474747)
+#define AUTOCOLORDEEPPINK UIColorHEX(0xeb5d8c)
+#define AUTOCOLORPINK UIColorHEX(0xf9b3cb)
+#define NAVCOLORWHITE UIColorHEX(0xffffff)
+
+
+
