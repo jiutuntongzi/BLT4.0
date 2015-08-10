@@ -25,6 +25,9 @@
 #import "ShareData.h"
 #import "HotmoxibustionModel.h"
 
+// 蓝牙设备模型
+#import "BltModel.h"
+#import "BLTManager.h"
 
 #import "NavLabel.h"
 #import "ZJSwitch.h"
@@ -37,6 +40,7 @@
 
 #define AUTOFONTSIZE(s)     [UIFont systemFontOfSize:s]
 #define NAVFONTSIZE [UIFont systemFontOfSize:17.0]
+#define TABLEFONTSIZE [UIFont systemFontOfSize:14.0]
 
 #define AUTOCOLORGRAY UIColorHEX(0xc7c7cd)
 #define AUTOCOLORBLACK UIColorHEX(0x474747)

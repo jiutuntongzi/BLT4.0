@@ -15,9 +15,9 @@
     self = [super initWithFrame:frame];
     if (self)
     {
-        self.textAlignment = NSTextAlignmentCenter;
-        self.font = NAVFONTSIZE;
-        self.textColor = [UIColor whiteColor];
+        self.textAlignment = NSTextAlignmentLeft;
+        self.font = TABLEFONTSIZE;
+        self.textColor = [UIColor blackColor];
     }
     return self;
 }

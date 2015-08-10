@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DeviceTableViewCell.h"
 
-@interface HomeViewController : UIViewController
+@interface HomeViewController : UIViewController <UITableViewDataSource,UITableViewDelegate>
+
+@property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) NSArray *deviceList;
 
 @end

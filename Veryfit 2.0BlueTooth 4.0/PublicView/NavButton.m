@@ -22,8 +22,10 @@
 
 - (void)loadbutton
 {
+    self.backgroundColor = AUTOCOLORDEEPPINK;
     [self setTitleColor:NAVCOLORWHITE forState:UIControlStateNormal];
     [self setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
+    [self.titleLabel setFont:AUTOFONTSIZE(14.0)];
     [self.titleLabel setFont:NAVFONTSIZE];
 }
 /*

@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		B951BC051B783EAC00A8F120 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B951BC041B783EAC00A8F120 /* HomeViewController.m */; };
+		B951BC0B1B78948200A8F120 /* DeviceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B951BC0A1B78948200A8F120 /* DeviceTableViewCell.m */; };
+		B951BC111B7897FF00A8F120 /* BltModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B951BC101B7897FF00A8F120 /* BltModel.m */; };
+		B951BC141B78A4CD00A8F120 /* BLTManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B951BC131B78A4CD00A8F120 /* BLTManager.m */; };
 		B953F77D1B70AA28006263AE /* 3rejiu_addmode_6@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B953F7761B70AA28006263AE /* 3rejiu_addmode_6@2x.png */; };
 		B953F77E1B70AA28006263AE /* 3rejiu_adjust_plus_normal_6@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B953F7771B70AA28006263AE /* 3rejiu_adjust_plus_normal_6@2x.png */; };
 		B953F77F1B70AA28006263AE /* 3rejiu_adjust_plus_press_6@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B953F7781B70AA28006263AE /* 3rejiu_adjust_plus_press_6@2x.png */; };
@@ -147,6 +150,12 @@
 /* Begin PBXFileReference section */
 		B951BC031B783EAC00A8F120 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		B951BC041B783EAC00A8F120 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
+		B951BC091B78948200A8F120 /* DeviceTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceTableViewCell.h; sourceTree = "<group>"; };
+		B951BC0A1B78948200A8F120 /* DeviceTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceTableViewCell.m; sourceTree = "<group>"; };
+		B951BC0F1B7897FF00A8F120 /* BltModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BltModel.h; sourceTree = "<group>"; };
+		B951BC101B7897FF00A8F120 /* BltModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BltModel.m; sourceTree = "<group>"; };
+		B951BC121B78A4CD00A8F120 /* BLTManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLTManager.h; sourceTree = "<group>"; };
+		B951BC131B78A4CD00A8F120 /* BLTManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLTManager.m; sourceTree = "<group>"; };
 		B953F7761B70AA28006263AE /* 3rejiu_addmode_6@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "3rejiu_addmode_6@2x.png"; sourceTree = "<group>"; };
 		B953F7771B70AA28006263AE /* 3rejiu_adjust_plus_normal_6@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "3rejiu_adjust_plus_normal_6@2x.png"; sourceTree = "<group>"; };
 		B953F7781B70AA28006263AE /* 3rejiu_adjust_plus_press_6@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "3rejiu_adjust_plus_press_6@2x.png"; sourceTree = "<group>"; };
@@ -424,6 +433,8 @@
 		B951BC011B783E9B00A8F120 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				B951BC091B78948200A8F120 /* DeviceTableViewCell.h */,
+				B951BC0A1B78948200A8F120 /* DeviceTableViewCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -435,6 +446,33 @@
 				B951BC041B783EAC00A8F120 /* HomeViewController.m */,
 			);
 			path = ViewController;
+			sourceTree = "<group>";
+		};
+		B951BC061B78871C00A8F120 /* BLTClass */ = {
+			isa = PBXGroup;
+			children = (
+				B951BC071B78871C00A8F120 /* BaseClass */,
+				B951BC081B78871C00A8F120 /* Model */,
+			);
+			path = BLTClass;
+			sourceTree = "<group>";
+		};
+		B951BC071B78871C00A8F120 /* BaseClass */ = {
+			isa = PBXGroup;
+			children = (
+				B951BC121B78A4CD00A8F120 /* BLTManager.h */,
+				B951BC131B78A4CD00A8F120 /* BLTManager.m */,
+			);
+			path = BaseClass;
+			sourceTree = "<group>";
+		};
+		B951BC081B78871C00A8F120 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B951BC0F1B7897FF00A8F120 /* BltModel.h */,
+				B951BC101B7897FF00A8F120 /* BltModel.m */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		B953F7731B70AA28006263AE /* HealthManagementVc */ = {
@@ -468,6 +506,7 @@
 		B9C673211B6F5E4C0048697C = {
 			isa = PBXGroup;
 			children = (
+				B951BC061B78871C00A8F120 /* BLTClass */,
 				B9C673911B6F79430048697C /* Resources */,
 				B9CDE4A81B706F9C00D5D1E9 /* PublicView */,
 				B9C6732C1B6F5E4C0048697C /* Warm */,
@@ -1148,6 +1187,7 @@
 				TargetAttributes = {
 					B9C673291B6F5E4C0048697C = {
 						CreatedOnToolsVersion = 6.3;
+						DevelopmentTeam = T65EE75V48;
 					};
 					B9C673421B6F5E4C0048697C = {
 						CreatedOnToolsVersion = 6.3;
@@ -1237,6 +1277,7 @@
 				B9C674821B6F79430048697C /* IQTextView.m in Sources */,
 				B9CDE4BA1B70752A00D5D1E9 /* HealthManagementVc.m in Sources */,
 				B9C674AF1B6F7BAC0048697C /* ShareData.m in Sources */,
+				B951BC111B7897FF00A8F120 /* BltModel.m in Sources */,
 				B9C6746E1B6F79430048697C /* NSDate+DateTools.m in Sources */,
 				B9C674941B6F79430048697C /* UIView+MJExtension.m in Sources */,
 				B9C674751B6F79430048697C /* FMDatabaseQueue.m in Sources */,
@@ -1254,6 +1295,7 @@
 				B9C674851B6F79430048697C /* IQToolbar.m in Sources */,
 				B9C674841B6F79430048697C /* IQTitleBarButtonItem.m in Sources */,
 				B9C6746C1B6F79430048697C /* DTTimePeriodCollection.m in Sources */,
+				B951BC0B1B78948200A8F120 /* DeviceTableViewCell.m in Sources */,
 				B9C674481B6F79430048697C /* MBHUDHelper.m in Sources */,
 				B9C674581B6F79430048697C /* UIView+Simple.m in Sources */,
 				B9C674791B6F79430048697C /* LKDBUtils.m in Sources */,
@@ -1269,6 +1311,7 @@
 				B9C674911B6F79430048697C /* MJRefreshLegendHeader.m in Sources */,
 				B9C6748E1B6F79430048697C /* MJRefreshGifHeader.m in Sources */,
 				B9C674A21B6F79430048697C /* XYPopupViewHelper.m in Sources */,
+				B951BC141B78A4CD00A8F120 /* BLTManager.m in Sources */,
 				B9C6748D1B6F79430048697C /* MJRefreshGifFooter.m in Sources */,
 				B9C674831B6F79430048697C /* IQBarButtonItem.m in Sources */,
 				B9C674A61B6F79430048697C /* zip.c in Sources */,
@@ -1442,6 +1485,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = Warm/PrefixHeader.pch;
@@ -1456,6 +1500,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = Warm/PrefixHeader.pch;
