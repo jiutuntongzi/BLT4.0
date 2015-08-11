@@ -13,7 +13,7 @@
 
 @property (nonatomic, strong) CBCentralManager *centralManager;
 @property (nonatomic, strong) CBPeripheral *discoverPeripheral;
-@property (nonatomic, strong) NSTimer *scanTimer;
+@property (nonatomic, strong) NSTimer *scanDeviceTimer;    //扫描设备的定时器
 
 @end
 
@@ -45,8 +45,16 @@ DEF_SINGLETON(BLTManager)
 
 }
 
-- (void)scanDevice
+- (void)scanDevice:(CGFloat)time
 {
+    SHOWMBProgressHUD(@"开始扫描",nil, nil, NO, 1.0);
+    if (_scanDeviceTimer)
+    {
+        [_scanDeviceTimer invalidate];
+        _scanDeviceTimer = nil;
+    }
+    _scanDeviceTimer = [NSTimer scheduledTimerWithTimeInterval:time target:self selector:@selector(stopScan) userInfo:nil repeats:NO];
+    
     // 先停止扫描然后继续扫描. 避免因为多线程操作设备数组导致崩溃.
     [_centralManager stopScan];
     
@@ -66,12 +74,15 @@ DEF_SINGLETON(BLTManager)
         }
     }];
     [_centralManager scanForPeripheralsWithServices:@[BLTUUID.uartServiceUUID]
-                                            options:nil];
+                                        options:nil];
 }
 
 - (void)stopScan
 {
-    [self.centralManager stopScan];
+    SHOWMBProgressHUD(@"停止扫描",nil, nil, NO, 1.0);
+    [_scanDeviceTimer invalidate];
+    _scanDeviceTimer = nil;
+    [_centralManager stopScan];
 }
 
 - (void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary *)advertisementData RSSI:(NSNumber *)RSSI
@@ -112,12 +123,11 @@ DEF_SINGLETON(BLTManager)
         NSString *lastUUID = [BOINDUUID getObjectValue];
         NSLog(@"绑定的设备uuid:>>>>>>%@",lastUUID);
         
-        if ([lastUUID isEqualToString:model.bltUUID] && model.isBinding)
-        {
-            // 如果该设备已经绑定并且没有连接设备时就直接连接.
-            [self connectPeripheralWithModel:model];
-        }
-        
+//        if ([lastUUID isEqualToString:model.bltUUID] && model.isBinding)
+//        {
+//            // 如果该设备已经绑定并且没有连接设备时就直接连接.
+//            [self connectPeripheralWithModel:model];
+//        }
     }
 }
 
@@ -140,12 +150,11 @@ DEF_SINGLETON(BLTManager)
     {
         if (_model.peripheral.state == CBPeripheralStateConnected)
         {
-            //
-            [_centralManager cancelPeripheralConnection:_model.peripheral];
-            [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(connectDevice) object:nil];
-            [self performSelector:@selector(connectDevice) withObject:nil afterDelay:3.0];
-            _model = model;
-            SHOWMBProgressHUD(@"先断开之前设备", nil, nil, NO, 2.5);
+             [_centralManager cancelPeripheralConnection:_model.peripheral];
+             [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(connectDevice) object:nil];
+             [self performSelector:@selector(connectDevice) withObject:nil afterDelay:3.0];
+             _model = model;
+             SHOWMBProgressHUD(@"先断开之前设备", nil, nil, NO, 2.5);
             
         }
         else

@@ -31,7 +31,7 @@ typedef enum {
 AS_SINGLETON(BLTManager)
 
 // 不取消当前设备的情况下扫描
-- (void)scanDevice;
+- (void)scanDevice:(CGFloat)time;
 
 // 停止扫描.
 - (void)stopScan;

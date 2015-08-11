@@ -82,7 +82,7 @@
     }
     else
     {
-     [[BLTManager sharedInstance]scanDevice];
+        [[BLTManager sharedInstance]scanDevice:5.0];
         sender.selected = YES;
     }
 }
