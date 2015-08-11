@@ -72,6 +72,16 @@
     }
 }
 
+- (BOOL)isConnected
+{
+    if (_peripheral.state == CBPeripheralStateConnected)
+    {
+        return YES;
+    }
+    
+    return NO;
+}
+
 // 主建
 + (NSString *)getPrimaryKey
 {

@@ -30,8 +30,29 @@ DEF_SINGLETON(BLTManager)
     _allWareArray = [[NSMutableArray alloc] initWithCapacity:0];
     _centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
     _scanTime = 3.0;
+    
+    [BLTPeripheral sharedInstance].connectBlock = ^ ()
+        {
+            
+        };
     }
     return self;
+}
+
+- (void)loadRssi
+{
+    DEF_WEAKSELF_(BLTManager)
+    [BLTPeripheral sharedInstance].rssiBlock = ^(NSInteger RSSI) {
+        [weakSelf updateRSSI:RSSI];
+    };
+}
+
+- (void)updateRSSI:(NSInteger)RSSI
+{
+    _model.bltRSSI = [NSString stringWithFormat:@"%ld", (long)RSSI];
+    NSLog(@"更新信号强度:%@",_model.bltRSSI);
+    
+    [self updateViewsFromModel];
 }
 
 - (void)centralManagerDidUpdateState:(CBCentralManager *)central
@@ -142,8 +163,8 @@ DEF_SINGLETON(BLTManager)
         
         if ( [_lastUuid isEqualToString:model.bltUUID])
         {
-            _model = model;
-            [self connectPeripheralWithBoindModel];
+            [self connectPeripheralWithModel:model];
+//            [self connectPeripheralWithBoindModel];
             [self stopScan];
         }
         [self updateViewsFromModel];
@@ -240,6 +261,7 @@ DEF_SINGLETON(BLTManager)
     {
         _BltManagerDidConnectBlock();
     }
+//    [self loadRssi];
     
 }
 

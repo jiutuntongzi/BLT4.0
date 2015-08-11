@@ -20,6 +20,7 @@
 		B969111F1B7993D00031BA2B /* BLTUUID.m in Sources */ = {isa = PBXBuildFile; fileRef = B969111E1B7993D00031BA2B /* BLTUUID.m */; };
 		B96911221B79E6BB0031BA2B /* BLTPeripheral.m in Sources */ = {isa = PBXBuildFile; fileRef = B96911211B79E6BB0031BA2B /* BLTPeripheral.m */; };
 		B96911241B79F0CB0031BA2B /* login_right_5s@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B96911231B79F0CB0031BA2B /* login_right_5s@2x.png */; };
+		B96911271B7A06B50031BA2B /* BLTAcceptModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B96911261B7A06B50031BA2B /* BLTAcceptModel.m */; };
 		B9C673301B6F5E4C0048697C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B9C6732F1B6F5E4C0048697C /* main.m */; };
 		B9C673331B6F5E4C0048697C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B9C673321B6F5E4C0048697C /* AppDelegate.m */; };
 		B9C673361B6F5E4C0048697C /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9C673351B6F5E4C0048697C /* ViewController.m */; };
@@ -171,6 +172,8 @@
 		B96911201B79E6BB0031BA2B /* BLTPeripheral.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLTPeripheral.h; sourceTree = "<group>"; };
 		B96911211B79E6BB0031BA2B /* BLTPeripheral.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLTPeripheral.m; sourceTree = "<group>"; };
 		B96911231B79F0CB0031BA2B /* login_right_5s@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_right_5s@2x.png"; sourceTree = "<group>"; };
+		B96911251B7A06B50031BA2B /* BLTAcceptModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLTAcceptModel.h; sourceTree = "<group>"; };
+		B96911261B7A06B50031BA2B /* BLTAcceptModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLTAcceptModel.m; sourceTree = "<group>"; };
 		B9C6732A1B6F5E4C0048697C /* Warm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Warm.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9C6732E1B6F5E4C0048697C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B9C6732F1B6F5E4C0048697C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -472,6 +475,8 @@
 				B951BC131B78A4CD00A8F120 /* BLTManager.m */,
 				B96911201B79E6BB0031BA2B /* BLTPeripheral.h */,
 				B96911211B79E6BB0031BA2B /* BLTPeripheral.m */,
+				B96911251B7A06B50031BA2B /* BLTAcceptModel.h */,
+				B96911261B7A06B50031BA2B /* BLTAcceptModel.m */,
 				B969111D1B7993D00031BA2B /* BLTUUID.h */,
 				B969111E1B7993D00031BA2B /* BLTUUID.m */,
 			);
@@ -1355,6 +1360,7 @@
 				B9C6749A1B6F79430048697C /* RequestHelper.m in Sources */,
 				B969111F1B7993D00031BA2B /* BLTUUID.m in Sources */,
 				B9C6747A1B6F79430048697C /* NSObject+LKDBHelper.m in Sources */,
+				B96911271B7A06B50031BA2B /* BLTAcceptModel.m in Sources */,
 				B9C90A151B70F56000C708C3 /* NavButton.m in Sources */,
 				B9C673301B6F5E4C0048697C /* main.m in Sources */,
 				B9C674AB1B6F7A1E0048697C /* ZKKViewController.m in Sources */,

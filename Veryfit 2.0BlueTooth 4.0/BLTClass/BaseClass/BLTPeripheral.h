@@ -11,7 +11,18 @@
 
 @interface BLTPeripheral : NSObject <CBPeripheralDelegate>
 
+typedef void(^BLTPeripheralRSSI)(NSInteger RSSI);
+typedef void(^BLTPeripheralDidConnect)();
+typedef void(^BLTPeripheralUpdate)(NSData *data, CBPeripheral *peripheral);
+typedef void(^BLTPeripheralUpdateBigData)(NSData *data);
+
+@property (nonatomic, strong) BLTPeripheralUpdate updateBlock;
+@property (nonatomic, strong) BLTPeripheralUpdateBigData updateBigDataBlock;
+@property (nonatomic, strong) BLTPeripheralDidConnect connectBlock;
+@property (nonatomic, strong) BLTPeripheralRSSI rssiBlock;
+
 @property (nonatomic, strong) CBPeripheral *peripheral;
+
 
 AS_SINGLETON(BLTPeripheral)
 

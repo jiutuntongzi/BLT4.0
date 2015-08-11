@@ -16,6 +16,7 @@
 @property (nonatomic, strong) NSString *bltUUID;
 @property (nonatomic, strong) CBPeripheral *peripheral;
 @property (nonatomic, strong) NSString *bltRSSI;
+@property (nonatomic, assign) BOOL isConnect;
 
 + (instancetype)initWithUUID:(NSString *)uuid;
 

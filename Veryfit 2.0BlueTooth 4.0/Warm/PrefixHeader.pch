@@ -28,6 +28,7 @@
 // 蓝牙设备模型
 #import "BltModel.h"
 #import "BLTManager.h"
+#import "BLTPeripheral.h"
 
 #import "NavLabel.h"
 #import "ZJSwitch.h"

@@ -70,6 +70,30 @@
     [self.view addSubview:removeBoindButton];
     
     [BLTManager sharedInstance];
+    [BLTPeripheral sharedInstance].connectBlock = ^() {
+//        if (_BltManagerDidConnectBlock)
+//        {
+//            _BltManagerDidConnectBlock();
+//        }
+    };
+    
+    DEF_WEAKSELF_(HomeViewController)
+    [BLTManager sharedInstance].updateModelBlock = ^(NSArray *list)
+    {
+        [weakSelf updateDeviceModel];
+    };
+    
+    [BLTManager sharedInstance].BltManagerDidConnectBlock = ^()
+    {
+        SHOWMBProgressHUD(@"连接成功", nil, nil, NO, 1.0);
+        [weakSelf updateDeviceModel];
+    };
+    
+    [BLTManager sharedInstance].BltManagerDisConnectBlock = ^()
+    {
+        SHOWMBProgressHUD(@"断开连接", nil, nil, NO, 1.0);
+        [weakSelf updateDeviceModel];
+    };
 }
 
 - (void)updateDeviceModel
@@ -138,24 +162,6 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
-    DEF_WEAKSELF_(HomeViewController)
-    [BLTManager sharedInstance].updateModelBlock = ^(NSArray *list)
-    {
-        [weakSelf updateDeviceModel];
-    };
-    
-    [BLTManager sharedInstance].BltManagerDidConnectBlock = ^()
-    {
-        SHOWMBProgressHUD(@"连接成功", nil, nil, NO, 1.0);
-        [weakSelf updateDeviceModel];
-    };
-    
-    [BLTManager sharedInstance].BltManagerDisConnectBlock = ^()
-    {
-        SHOWMBProgressHUD(@"断开连接", nil, nil, NO, 1.0);
-        [weakSelf updateDeviceModel];
-    };
     
 }
 
