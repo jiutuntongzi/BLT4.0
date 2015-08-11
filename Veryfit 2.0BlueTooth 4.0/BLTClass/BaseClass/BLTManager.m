@@ -36,6 +36,7 @@ DEF_SINGLETON(BLTManager)
             
         };
     }
+    
     return self;
 }
 

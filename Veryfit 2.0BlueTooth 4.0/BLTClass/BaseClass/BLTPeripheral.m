@@ -30,8 +30,6 @@ DEF_SINGLETON(BLTPeripheral)
     {
         _receiveData = [[NSMutableData alloc] init];
         _writeType = CBCharacteristicWriteWithResponse;
-        
-        [self loadBltManager];
     }
     
     return self;

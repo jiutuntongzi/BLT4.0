@@ -70,12 +70,6 @@
     [self.view addSubview:removeBoindButton];
     
     [BLTManager sharedInstance];
-    [BLTPeripheral sharedInstance].connectBlock = ^() {
-//        if (_BltManagerDidConnectBlock)
-//        {
-//            _BltManagerDidConnectBlock();
-//        }
-    };
     
     DEF_WEAKSELF_(HomeViewController)
     [BLTManager sharedInstance].updateModelBlock = ^(NSArray *list)
