@@ -39,10 +39,11 @@
     
     CGFloat width = (self.view.width - 20)/4;
     
-    NavButton *scanButton = [[NavButton alloc] initWithFrame:CGRectMake(0, 320, width, 44)];
-    [scanButton setTitle:@"扫描设备" forState:UIControlStateNormal];
-    [scanButton addTarget:self action:@selector(scanButtonClick:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:scanButton];
+    _scanButton = [[NavButton alloc] initWithFrame:CGRectMake(0, 320, width, 44)];
+    [_scanButton setTitle:@"扫描设备" forState:UIControlStateNormal];
+    [_scanButton setTitle:@"停止扫描" forState:UIControlStateSelected];
+    [_scanButton addTarget:self action:@selector(scanButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:_scanButton];
     
     NavButton *refreshButton = [[NavButton alloc] initWithFrame:CGRectMake(width + 5, 320, width, 44)];
     [refreshButton setTitle:@"重新扫描" forState:UIControlStateNormal];
@@ -74,7 +75,16 @@
 
 - (void)scanButtonClick:(NavButton *)sender
 {
-    
+    if (sender.selected ==YES)
+    {
+     [[BLTManager sharedInstance]stopScan];
+        sender.selected = NO;
+    }
+    else
+    {
+     [[BLTManager sharedInstance]scanDevice];
+        sender.selected = YES;
+    }
 }
 
 - (void)refreshButtonClick:(NavButton *)sender

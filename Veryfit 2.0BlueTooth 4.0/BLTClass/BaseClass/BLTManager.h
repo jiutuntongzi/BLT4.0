@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#define BOINDUUID @"BOINDUUID"
 
 typedef enum {
     BLTModelDisConnect = 0,             // 未连接
@@ -23,8 +24,16 @@ typedef enum {
 @interface BLTManager : NSObject
 
 @property (nonatomic, strong) BltModel *model;
+@property (nonatomic, assign) BOOL isUpdateing;
 @property (nonatomic, strong) NSMutableArray *allWareArray;
+@property (nonatomic, strong) NSString *lastUuid;
 
 AS_SINGLETON(BLTManager)
+
+// 不取消当前设备的情况下扫描
+- (void)scanDevice;
+
+// 停止扫描.
+- (void)stopScan;
 
 @end

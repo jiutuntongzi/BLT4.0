@@ -72,6 +72,11 @@
     }
 }
 
+- (void)setIsBinding:(BOOL)isBinding
+{
+    _isBinding = isBinding;
+    [self updateCurrentModelToDB];
+}
 
 // 主建
 + (NSString *)getPrimaryKey

@@ -17,6 +17,7 @@
 		B953F7801B70AA28006263AE /* 3rejiu_adjust_reduce_normal_6@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B953F7791B70AA28006263AE /* 3rejiu_adjust_reduce_normal_6@2x.png */; };
 		B953F7811B70AA28006263AE /* 3rejiu_adjust_reduce_press_6@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B953F77A1B70AA28006263AE /* 3rejiu_adjust_reduce_press_6@2x.png */; };
 		B953F7861B70AE56006263AE /* ZJSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = B953F7851B70AE56006263AE /* ZJSwitch.m */; };
+		B969111F1B7993D00031BA2B /* BLTUUID.m in Sources */ = {isa = PBXBuildFile; fileRef = B969111E1B7993D00031BA2B /* BLTUUID.m */; };
 		B9C673301B6F5E4C0048697C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B9C6732F1B6F5E4C0048697C /* main.m */; };
 		B9C673331B6F5E4C0048697C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B9C673321B6F5E4C0048697C /* AppDelegate.m */; };
 		B9C673361B6F5E4C0048697C /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9C673351B6F5E4C0048697C /* ViewController.m */; };
@@ -163,6 +164,8 @@
 		B953F77A1B70AA28006263AE /* 3rejiu_adjust_reduce_press_6@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "3rejiu_adjust_reduce_press_6@2x.png"; sourceTree = "<group>"; };
 		B953F7841B70AE56006263AE /* ZJSwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJSwitch.h; sourceTree = "<group>"; };
 		B953F7851B70AE56006263AE /* ZJSwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJSwitch.m; sourceTree = "<group>"; };
+		B969111D1B7993D00031BA2B /* BLTUUID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLTUUID.h; sourceTree = "<group>"; };
+		B969111E1B7993D00031BA2B /* BLTUUID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLTUUID.m; sourceTree = "<group>"; };
 		B9C6732A1B6F5E4C0048697C /* Warm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Warm.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9C6732E1B6F5E4C0048697C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B9C6732F1B6F5E4C0048697C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -462,6 +465,8 @@
 			children = (
 				B951BC121B78A4CD00A8F120 /* BLTManager.h */,
 				B951BC131B78A4CD00A8F120 /* BLTManager.m */,
+				B969111D1B7993D00031BA2B /* BLTUUID.h */,
+				B969111E1B7993D00031BA2B /* BLTUUID.m */,
 			);
 			path = BaseClass;
 			sourceTree = "<group>";
@@ -1338,6 +1343,7 @@
 				B9C674501B6F79430048697C /* NSObject+Simple.m in Sources */,
 				B9C6748A1B6F79430048697C /* MJRefreshComponent.m in Sources */,
 				B9C6749A1B6F79430048697C /* RequestHelper.m in Sources */,
+				B969111F1B7993D00031BA2B /* BLTUUID.m in Sources */,
 				B9C6747A1B6F79430048697C /* NSObject+LKDBHelper.m in Sources */,
 				B9C90A151B70F56000C708C3 /* NavButton.m in Sources */,
 				B9C673301B6F5E4C0048697C /* main.m in Sources */,

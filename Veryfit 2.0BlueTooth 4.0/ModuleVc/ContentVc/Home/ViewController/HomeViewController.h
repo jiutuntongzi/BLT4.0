@@ -13,5 +13,5 @@
 
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSArray *deviceList;
-
+@property (nonatomic, strong) NavButton *scanButton;
 @end
