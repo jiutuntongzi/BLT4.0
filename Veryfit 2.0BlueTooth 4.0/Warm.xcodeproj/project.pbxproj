@@ -18,6 +18,8 @@
 		B953F7811B70AA28006263AE /* 3rejiu_adjust_reduce_press_6@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B953F77A1B70AA28006263AE /* 3rejiu_adjust_reduce_press_6@2x.png */; };
 		B953F7861B70AE56006263AE /* ZJSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = B953F7851B70AE56006263AE /* ZJSwitch.m */; };
 		B969111F1B7993D00031BA2B /* BLTUUID.m in Sources */ = {isa = PBXBuildFile; fileRef = B969111E1B7993D00031BA2B /* BLTUUID.m */; };
+		B96911221B79E6BB0031BA2B /* BLTPeripheral.m in Sources */ = {isa = PBXBuildFile; fileRef = B96911211B79E6BB0031BA2B /* BLTPeripheral.m */; };
+		B96911241B79F0CB0031BA2B /* login_right_5s@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B96911231B79F0CB0031BA2B /* login_right_5s@2x.png */; };
 		B9C673301B6F5E4C0048697C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B9C6732F1B6F5E4C0048697C /* main.m */; };
 		B9C673331B6F5E4C0048697C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B9C673321B6F5E4C0048697C /* AppDelegate.m */; };
 		B9C673361B6F5E4C0048697C /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9C673351B6F5E4C0048697C /* ViewController.m */; };
@@ -166,6 +168,9 @@
 		B953F7851B70AE56006263AE /* ZJSwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJSwitch.m; sourceTree = "<group>"; };
 		B969111D1B7993D00031BA2B /* BLTUUID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLTUUID.h; sourceTree = "<group>"; };
 		B969111E1B7993D00031BA2B /* BLTUUID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLTUUID.m; sourceTree = "<group>"; };
+		B96911201B79E6BB0031BA2B /* BLTPeripheral.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLTPeripheral.h; sourceTree = "<group>"; };
+		B96911211B79E6BB0031BA2B /* BLTPeripheral.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLTPeripheral.m; sourceTree = "<group>"; };
+		B96911231B79F0CB0031BA2B /* login_right_5s@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_right_5s@2x.png"; sourceTree = "<group>"; };
 		B9C6732A1B6F5E4C0048697C /* Warm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Warm.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9C6732E1B6F5E4C0048697C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B9C6732F1B6F5E4C0048697C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -465,6 +470,8 @@
 			children = (
 				B951BC121B78A4CD00A8F120 /* BLTManager.h */,
 				B951BC131B78A4CD00A8F120 /* BLTManager.m */,
+				B96911201B79E6BB0031BA2B /* BLTPeripheral.h */,
+				B96911211B79E6BB0031BA2B /* BLTPeripheral.m */,
 				B969111D1B7993D00031BA2B /* BLTUUID.h */,
 				B969111E1B7993D00031BA2B /* BLTUUID.m */,
 			);
@@ -684,6 +691,7 @@
 		B9C673911B6F79430048697C /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				B96911231B79F0CB0031BA2B /* login_right_5s@2x.png */,
 				B9CDE4F01B707A9500D5D1E9 /* Icon@2x.png */,
 				B9CDE4F11B707A9500D5D1E9 /* launch_5@2x.png */,
 				B9C90A241B71047F00C708C3 /* 3rejiu_minutes_6@2x.png */,
@@ -1094,9 +1102,9 @@
 		B9DD098B1B6FA1DC00581895 /* HotMoxibustion */ = {
 			isa = PBXGroup;
 			children = (
-				B9CDE4AF1B7074CB00D5D1E9 /* ViewControll */,
 				B9DD098C1B6FA1DC00581895 /* Model */,
 				B9DD098D1B6FA1DC00581895 /* View */,
+				B9CDE4AF1B7074CB00D5D1E9 /* ViewControll */,
 			);
 			path = HotMoxibustion;
 			sourceTree = "<group>";
@@ -1247,6 +1255,7 @@
 				B953F7801B70AA28006263AE /* 3rejiu_adjust_reduce_normal_6@2x.png in Resources */,
 				B9C90A201B71023700C708C3 /* public_bottom_button_me_normal_6@2x.png in Resources */,
 				B9C6746F1B6F79430048697C /* LICENSE in Resources */,
+				B96911241B79F0CB0031BA2B /* login_right_5s@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1304,6 +1313,7 @@
 				B9C674481B6F79430048697C /* MBHUDHelper.m in Sources */,
 				B9C674581B6F79430048697C /* UIView+Simple.m in Sources */,
 				B9C674791B6F79430048697C /* LKDBUtils.m in Sources */,
+				B96911221B79E6BB0031BA2B /* BLTPeripheral.m in Sources */,
 				B9C673361B6F5E4C0048697C /* ViewController.m in Sources */,
 				B9C674511B6F79430048697C /* NSString+Simple.m in Sources */,
 				B9C6748F1B6F79430048697C /* MJRefreshHeader.m in Sources */,

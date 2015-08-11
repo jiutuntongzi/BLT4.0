@@ -23,10 +23,22 @@ typedef enum {
 
 @interface BLTManager : NSObject
 
+// 更新蓝牙
+typedef void(^BLTManagerUpdateModel)(NSArray *list);
+typedef void(^BltManagerBoind) (BOOL state);
+typedef void(^BltManagerRemoveBoind) (BOOL state);
+typedef void(^BltManagerDidConnect)();
+typedef void(^BltManagerDisConnect)();
+
+@property (nonatomic, strong) BLTManagerUpdateModel updateModelBlock;
+@property (nonatomic, strong) BltManagerDidConnect BltManagerDidConnectBlock;
+@property (nonatomic, strong) BltManagerDisConnect BltManagerDisConnectBlock;
+
 @property (nonatomic, strong) BltModel *model;
 @property (nonatomic, assign) BOOL isUpdateing;
 @property (nonatomic, strong) NSMutableArray *allWareArray;
 @property (nonatomic, strong) NSString *lastUuid;
+@property (nonatomic, assign) CGFloat scanTime;
 
 AS_SINGLETON(BLTManager)
 
@@ -35,5 +47,23 @@ AS_SINGLETON(BLTManager)
 
 // 停止扫描.
 - (void)stopScan;
+
+// 绑定已经连接过的设备
+- (void)connectPeripheralWithBoindModel;
+
+// 连接没有绑定的设备
+- (void)connectPeripheralWithModel:(BltModel *)model;
+
+// 断开当前连接设备
+- (void)disConnectPeripheral;
+
+// 查看是否绑定设备
+- (BOOL)checkBoind;
+
+// 绑定选中设备
+- (void)boindDeviceWith:(BltManagerBoind)boindState;
+
+// 解绑设备
+- (void)removeBoindWith:(BltManagerRemoveBoind)removeBoindState;
 
 @end

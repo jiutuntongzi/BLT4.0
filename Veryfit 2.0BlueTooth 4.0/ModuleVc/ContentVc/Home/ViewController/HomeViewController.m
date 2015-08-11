@@ -34,9 +34,8 @@
     _tableView.backgroundColor = [UIColor clearColor];
     [self.view addSubview:_tableView];
     
-    _deviceList = [[NSArray alloc] initWithObjects:@"1",@"2",@"3", nil];
-    NSLog(@"设备>>>%@",_deviceList);
-    
+    _deviceList = [[NSArray alloc] init];
+
     CGFloat width = (self.view.width - 20)/4;
     
     _scanButton = [[NavButton alloc] initWithFrame:CGRectMake(0, 320, width, 44)];
@@ -51,7 +50,7 @@
     [self.view addSubview:refreshButton];
     
     NavButton *connectButton = [[NavButton alloc] initWithFrame:CGRectMake(width * 2 + 10, 320, width, 44)];
-    [connectButton setTitle:@"链接设备" forState:UIControlStateNormal];
+    [connectButton setTitle:@"是否绑定" forState:UIControlStateNormal];
     [connectButton addTarget:self action:@selector(connectButtonClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:connectButton];
     
@@ -73,6 +72,14 @@
     [BLTManager sharedInstance];
 }
 
+- (void)updateDeviceModel
+{
+//    NSLog(@"Device List >>>%@",[BLTManager sharedInstance].allWareArray);
+    _deviceList = [BLTManager sharedInstance].allWareArray;
+    [_tableView reloadData];
+}
+
+
 - (void)scanButtonClick:(NavButton *)sender
 {
     if (sender.selected ==YES)
@@ -89,35 +96,72 @@
 
 - (void)refreshButtonClick:(NavButton *)sender
 {
-    
+    [[BLTManager sharedInstance]scanDevice:5.0];
 }
 
 - (void)connectButtonClick:(NavButton *)sender
 {
-    
+    if ([[BLTManager sharedInstance]checkBoind])
+    {
+        SHOWMBProgressHUD(@"已经绑定设备>>>>", nil, nil, NO, 1.0);
+    }
+    else
+    {
+        SHOWMBProgressHUD(@"没有绑定设备>>>>", nil, nil, NO, 1.0);
+    }
 }
 
 - (void)disConnectButtonClick:(NavButton *)sender
 {
-    
+    [[BLTManager sharedInstance]disConnectPeripheral];
 }
 
 - (void)boindButtonClick:(NavButton *)sender
 {
-    
+    [[BLTManager sharedInstance]boindDeviceWith:^(BOOL state) {
+        
+        if (state)
+        {
+            SHOWMBProgressHUD(@"绑定成功", nil, nil, NO, 1.0);
+        }
+    }];
 }
 
 - (void)removeBoindButtonClick:(NavButton *)sender
 {
+    [[BLTManager sharedInstance]removeBoindWith:^(BOOL state)
+    {
+         SHOWMBProgressHUD(@"解绑成功", nil, nil, NO, 1.0);
+    }];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    DEF_WEAKSELF_(HomeViewController)
+    [BLTManager sharedInstance].updateModelBlock = ^(NSArray *list)
+    {
+        [weakSelf updateDeviceModel];
+    };
+    
+    [BLTManager sharedInstance].BltManagerDidConnectBlock = ^()
+    {
+        SHOWMBProgressHUD(@"连接成功", nil, nil, NO, 1.0);
+        [weakSelf updateDeviceModel];
+    };
+    
+    [BLTManager sharedInstance].BltManagerDisConnectBlock = ^()
+    {
+        SHOWMBProgressHUD(@"断开连接", nil, nil, NO, 1.0);
+        [weakSelf updateDeviceModel];
+    };
     
 }
 
-- (void)setDeviceList:(NSArray *)deviceList
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    _deviceList = deviceList;
-    NSLog(@"设备>>>%@",_deviceList);
-    
-    [_tableView reloadData];
+    [[BLTManager sharedInstance]connectPeripheralWithModel:[_deviceList objectAtIndex:indexPath.row]];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -145,7 +189,7 @@
         cell = [[DeviceTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ListViewCellId];
     }
     cell.backgroundColor = AUTOCOLORDEEPPINK;
-    [cell updateBltModel:nil];
+    [cell updateBltModel:[_deviceList objectAtIndex:indexPath.row]];
 
     return  cell;
 }

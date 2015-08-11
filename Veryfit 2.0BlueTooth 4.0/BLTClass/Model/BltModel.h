@@ -17,9 +17,6 @@
 @property (nonatomic, strong) CBPeripheral *peripheral;
 @property (nonatomic, strong) NSString *bltRSSI;
 
-@property (nonatomic, assign) BOOL isBinding;
-// 是否绑定了
-
 + (instancetype)initWithUUID:(NSString *)uuid;
 
 // 从数据库获取模型.

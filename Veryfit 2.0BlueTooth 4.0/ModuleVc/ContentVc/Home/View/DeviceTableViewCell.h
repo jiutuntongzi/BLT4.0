@@ -13,6 +13,7 @@
 @property (nonatomic, strong) NavLabel *deviceName;
 @property (nonatomic, strong) NavLabel *deviceUuid;
 @property (nonatomic, strong) NavLabel *rssi;
+@property (nonatomic, strong) UIImageView *selectImage;
 
 - (void)updateBltModel:(BltModel *)model;
 

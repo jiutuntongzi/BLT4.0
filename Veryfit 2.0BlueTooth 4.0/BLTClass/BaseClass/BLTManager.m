@@ -7,6 +7,7 @@
 //
 
 #import "BLTManager.h"
+#import "BLTPeripheral.h"
 #import "BLTUUID.h"
 
 @interface BLTManager () <CBCentralManagerDelegate>
@@ -28,6 +29,7 @@ DEF_SINGLETON(BLTManager)
     {
     _allWareArray = [[NSMutableArray alloc] initWithCapacity:0];
     _centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
+    _scanTime = 3.0;
     }
     return self;
 }
@@ -36,17 +38,21 @@ DEF_SINGLETON(BLTManager)
 {
     if (central.state == CBCentralManagerStatePoweredOn)
     {
-   
+        [self scanDevice:_scanTime];
     }
     else
     {
-        
+        if (_BltManagerDisConnectBlock)
+        {
+            _BltManagerDisConnectBlock();
+        }
     }
-
 }
 
 - (void)scanDevice:(CGFloat)time
 {
+    _scanTime = time;
+    
     SHOWMBProgressHUD(@"开始扫描",nil, nil, NO, 1.0);
     if (_scanDeviceTimer)
     {
@@ -83,6 +89,16 @@ DEF_SINGLETON(BLTManager)
     [_scanDeviceTimer invalidate];
     _scanDeviceTimer = nil;
     [_centralManager stopScan];
+
+    if (_lastUuid)
+    {
+        NSLog(@"绑定的设备 uuid>>>>%@",_lastUuid);
+    }
+    else
+    {
+        NSLog(@"没有绑定设备>>>>请选择设备>>%@",_allWareArray);
+        SHOWMBProgressHUD(@"没有绑定设备,请去绑定设备", nil, nil, NO, 1.0);
+    }
 }
 
 - (void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary *)advertisementData RSSI:(NSNumber *)RSSI
@@ -119,9 +135,18 @@ DEF_SINGLETON(BLTManager)
             model.peripheral = peripheral;
             
             [_allWareArray addObject:model];
+            
         }
-        NSString *lastUUID = [BOINDUUID getObjectValue];
-        NSLog(@"绑定的设备uuid:>>>>>>%@",lastUUID);
+        
+        _lastUuid = [ BOINDUUID getObjectValue];
+        
+        if ( [_lastUuid isEqualToString:model.bltUUID])
+        {
+            _model = model;
+            [self connectPeripheralWithBoindModel];
+            [self stopScan];
+        }
+        [self updateViewsFromModel];
         
 //        if ([lastUUID isEqualToString:model.bltUUID] && model.isBinding)
 //        {
@@ -129,6 +154,12 @@ DEF_SINGLETON(BLTManager)
 //            [self connectPeripheralWithModel:model];
 //        }
     }
+}
+
+// 绑定已经连接过的设备
+- (void)connectPeripheralWithBoindModel
+{
+    [_centralManager connectPeripheral:_model.peripheral options:nil];
 }
 
 - (void)connectPeripheralWithModel:(BltModel *)model
@@ -140,7 +171,7 @@ DEF_SINGLETON(BLTManager)
     
     if ([_model.bltUUID isEqualToString:model.bltUUID])
     {
-        SHOWMBProgressHUD(@"同一个设备", nil, nil, NO, 1.0);
+//        SHOWMBProgressHUD(@"同一个设备", nil, nil, NO, 1.0);
         if (model.peripheral.state != CBPeripheralStateConnected)
         {
             [_centralManager connectPeripheral:model.peripheral options:nil];
@@ -148,14 +179,15 @@ DEF_SINGLETON(BLTManager)
     }
     else
     {
+//        SHOWMBProgressHUD(@"不同一个设备", nil, nil, NO, 1.0);
+        // 保存最后一次连接的设备
         if (_model.peripheral.state == CBPeripheralStateConnected)
         {
              [_centralManager cancelPeripheralConnection:_model.peripheral];
+             _model = model;
              [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(connectDevice) object:nil];
              [self performSelector:@selector(connectDevice) withObject:nil afterDelay:3.0];
-             _model = model;
-             SHOWMBProgressHUD(@"先断开之前设备", nil, nil, NO, 2.5);
-            
+//             SHOWMBProgressHUD(@"先断开之前设备", nil, nil, NO, 3.0);
         }
         else
         {
@@ -188,6 +220,37 @@ DEF_SINGLETON(BLTManager)
 //    }
 }
 
+// 断开当前连接设备
+- (void)disConnectPeripheral
+{
+    if (_discoverPeripheral.state == CBPeripheralStateConnected)
+    {
+        [_centralManager cancelPeripheralConnection:_discoverPeripheral];
+    }
+}
+
+- (void)centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral
+{
+    _discoverPeripheral = peripheral;
+    _discoverPeripheral.delegate = [BLTPeripheral sharedInstance];
+    [BLTPeripheral sharedInstance].peripheral = _discoverPeripheral;
+    NSLog(@"peripheral>>>>uuid>>>%@",[peripheral.identifier UUIDString]);
+    
+    if (_BltManagerDidConnectBlock)
+    {
+        _BltManagerDidConnectBlock();
+    }
+    
+}
+
+- (void)centralManager:(CBCentralManager *)central didDisconnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error
+{
+    if (_BltManagerDisConnectBlock)
+    {
+        _BltManagerDisConnectBlock();
+    }
+}
+
 // 连接设备并停止扫描
 - (void)connectDevice
 {   SHOWMBProgressHUD(@"连接设备", nil, nil, NO, 1.0);
@@ -196,6 +259,7 @@ DEF_SINGLETON(BLTManager)
     [_centralManager stopScan];
 }
 
+// 检查设备是否存在
 - (BltModel *)checkIsAddInAllWareWithID:(NSString *)idString
 {
     for (BltModel *model in _allWareArray)
@@ -207,6 +271,67 @@ DEF_SINGLETON(BLTManager)
     }
     
     return nil;
+}
+
+// 只要外围设备发生变化了就通知刷新
+- (void)updateViewsFromModel
+{
+    if (_updateModelBlock)
+    {
+        _updateModelBlock(nil);
+    }
+    
+}
+
+- (NSArray *)sortByNumberWithArray:(NSMutableArray *)array
+{
+    NSArray *sortedArray = [array sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        
+        BltModel *model1 = (BltModel *)obj1;
+        BltModel *model2 = (BltModel *)obj2;
+        if (model1.bltRSSI > model2.bltRSSI)
+        {
+            return NSOrderedAscending;
+        }
+        else
+        {
+            return NSOrderedDescending;
+        }
+    }];
+    return sortedArray;
+}
+
+- (BOOL)checkBoind
+{
+    if ([BOINDUUID getObjectValue])
+    {
+        return YES;
+    }
+    else
+    {
+        return NO;
+    }
+}
+// 绑定选中设备
+- (void)boindDeviceWith:(BltManagerBoind)boindState
+{
+    [BOINDUUID setObjectValue:_model.bltUUID];
+    
+    if (boindState)
+    {
+        boindState(YES);
+    }
+}
+
+// 解绑设备
+- (void)removeBoindWith:(BltManagerRemoveBoind)removeBoindState
+{
+    [BOINDUUID setObjectValue:NULL];
+    if (removeBoindState)
+    {
+        removeBoindState (YES);
+    }
+    [self disConnectPeripheral];
 }
 
 @end

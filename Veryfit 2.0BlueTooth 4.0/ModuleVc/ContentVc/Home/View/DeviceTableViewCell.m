@@ -40,6 +40,12 @@
     _deviceName.frame = CGRectMake(10, 0, self.width, 20);
     _deviceUuid.frame = CGRectMake(10, 20, self.width, 20);
     _rssi.frame = CGRectMake(10, 40, 50, 20);
+    _selectImage = [[UIImageView alloc] init];
+    
+    _selectImage.image = [UIImage imageNamed:@"login_right_5s@2x.png"];
+    _selectImage.hidden = YES;
+    _selectImage.frame = CGRectMake(self.width , 15, 18, 14);
+    [self addSubview:_selectImage];
     
     [self addSubview:_deviceName];
     [self addSubview:_deviceUuid];
@@ -48,9 +54,18 @@
 
 - (void)updateBltModel:(BltModel *)model
 {
-    _deviceName.text = @"蓝牙设备:";
-    _rssi.text = @"信号:88";
-    _deviceUuid.text = @"12345-12345--12345--12345--12345--12345";
+    _deviceName.text = model.bltName;
+    _rssi.text = model.bltRSSI;
+    _deviceUuid.text = model.bltUUID;
+    if (model.peripheral.state == CBPeripheralStateConnected)
+    {
+        _selectImage.hidden = NO;
+        // SHOWMBProgressHUD(@"设备已连接", nil, nil, NO, 2.0);
+    }
+    else
+    {
+        _selectImage.hidden = YES;
+    }
 }
 
 @end
