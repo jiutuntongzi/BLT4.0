@@ -23,7 +23,13 @@ typedef void(^BLTPeripheralUpdateBigData)(NSData *data);
 
 @property (nonatomic, strong) CBPeripheral *peripheral;
 
-
 AS_SINGLETON(BLTPeripheral)
+
+// 只连接一个设备时发数据.
+- (void)senderDataToPeripheral:(NSData *)data;
+
+- (void)startUpdateRSSI;
+
+- (void)stopUpdateRSSI;
 
 @end

@@ -258,10 +258,25 @@ DEF_SINGLETON(BLTManager)
     [BLTPeripheral sharedInstance].peripheral = _discoverPeripheral;
     NSLog(@"peripheral>>>>uuid>>>%@",[peripheral.identifier UUIDString]);
     
+    if (!_isUpdateing)
+    {
+        [_discoverPeripheral discoverServices:@[BLTUUID.uartServiceUUID]];
+        
+        [[BLTPeripheral sharedInstance]startUpdateRSSI];
+    }
+    else
+    {
+        [_discoverPeripheral discoverServices:@[BLTUUID.updateServiceUUID]];
+        
+//        [BLTDFUHelper sharedInstance].updatePeripheral = _discoverPeripheral;
+    }
+
     if (_BltManagerDidConnectBlock)
     {
         _BltManagerDidConnectBlock();
     }
+    
+    
 //    [self loadRssi];
     
 }
@@ -271,6 +286,15 @@ DEF_SINGLETON(BLTManager)
     if (_BltManagerDisConnectBlock)
     {
         _BltManagerDisConnectBlock();
+    }
+    
+    if (!_isUpdateing)
+    {
+        [[BLTPeripheral sharedInstance]stopUpdateRSSI];
+    }
+    else
+    {
+        
     }
 }
 
