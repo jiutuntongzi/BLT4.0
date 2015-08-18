@@ -19,14 +19,24 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    self.view.backgroundColor = [[UIColor blueColor]colorWithAlphaComponent:0.3];
+    
+    UIView *topView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, 64)];
+    topView.backgroundColor = [UIColor grayColor];
+    [self.view addSubview:topView];
+    
+    UIButton *rightButton = [[NavButton alloc] initWithFrame:CGRectMake(self.view.width - 80, 20, 80, 44)];
+    rightButton.backgroundColor = [UIColor clearColor];
+    [rightButton setTitle:@"指令测试" forState:UIControlStateNormal];
+    [rightButton addTarget:self action:@selector(functionTest) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:rightButton];
+    
     NavLabel *title = [[NavLabel alloc] initWithFrame:CGRectMake(0,20 + 12, self.view.width, 20)];
     title.text = @"蓝牙设备";
     title.font = AUTOFONTSIZE(17.0);
     title.textAlignment = NSTextAlignmentCenter;
     title.textColor = [UIColor whiteColor];
     [self.view addSubview:title];
-    
-    self.view.backgroundColor = AUTOCOLORPINK;
     
     _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, self.view.width, 4 * 60) style:UITableViewStylePlain];
     _tableView.delegate =self;
@@ -88,6 +98,21 @@
         SHOWMBProgressHUD(@"断开连接", nil, nil, NO, 1.0);
         [weakSelf updateDeviceModel];
     };
+    
+    
+    NSSortDescriptor *descriptor = [[NSSortDescriptor alloc]initWithKey:nil ascending:YES];
+    
+    NSArray *sortArray = [NSArray arrayWithObjects:descriptor,nil];
+    
+    NSArray *sortedArray = [sortArray sortedArrayUsingDescriptors:sortArray];
+    
+    NSLog(@"%@", sortedArray);
+}
+
+- (void)functionTest
+{
+    FunctionViewController *functionVc= [[FunctionViewController alloc] init];
+    [self.navigationController pushViewController:functionVc animated:YES];
 }
 
 - (void)updateDeviceModel
@@ -96,7 +121,6 @@
     _deviceList = [BLTManager sharedInstance].allWareArray;
     [_tableView reloadData];
 }
-
 
 - (void)scanButtonClick:(NavButton *)sender
 {

@@ -9,17 +9,38 @@
 #import <Foundation/Foundation.h>
 #define BOINDUUID @"BOINDUUID"
 
+//typedef enum {
+//    BLTModelDisConnect = 0,             // 未连接
+//    BLTModelDidConnect = 1,             // 已连接
+//    BLTModelConnecting,                 // 连接中
+//    BLTModelRepeatConnecting,           // 重连中
+//    BLTModelConnectFindDevice,          // 寻找设备
+//    BLTModelConnectAlarming,            // 连接报警, 设备寻找手机
+//    BLTModelDistanceAlarming,           // 距离报警
+//    BLTModelDisConnectAlarming,         // 丢失报警
+//    BLTModelConnectFail                 // 连接失败
+//} BLTModelConnectState;
+
+//typedef enum {
+//    BLTModelDisConnect = 0,             // 未连接
+//    BLTModelDidConnect = 1,             // 已连接
+//    BLTModelConnecting,                 // 连接中
+//    BLTModelRepeatConnecting,           // 重连中
+//    BLTModelConnectFindDevice,          // 寻找设备
+//    BLTModelConnectAlarming,            // 连接报警, 设备寻找手机
+//    BLTModelDistanceAlarming,           // 距离报警
+//    BLTModelDisConnectAlarming,         // 丢失报警
+//    BLTModelConnectFail                 // 连接失败
+//} BLTModelConnectState;
+
 typedef enum {
-    BLTModelDisConnect = 0,             // 未连接
-    BLTModelDidConnect = 1,             // 已连接
-    BLTModelConnecting,                 // 连接中
-    BLTModelRepeatConnecting,           // 重连中
-    BLTModelConnectFindDevice,          // 寻找设备
-    BLTModelConnectAlarming,            // 连接报警, 设备寻找手机
-    BLTModelDistanceAlarming,           // 距离报警
-    BLTModelDisConnectAlarming,         // 丢失报警
-    BLTModelConnectFail                 // 连接失败
-} BLTModelConnectState;
+    BLTModelDidConnect = 1,  // 已连接
+    BLTModelDisConnect = 2,  // 未连接
+    BLTModelPowerOn = 3,
+    BLTModelPowerOff = 4,
+    
+    
+}BLTModelConnectState;
 
 @interface BLTManager : NSObject
 

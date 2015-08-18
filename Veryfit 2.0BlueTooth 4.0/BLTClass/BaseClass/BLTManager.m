@@ -91,7 +91,8 @@ DEF_SINGLETON(BLTManager)
         switch (model.peripheral.state)
         {
             case CBPeripheralStateConnected:
-                
+                [_centralManager cancelPeripheralConnection:_discoverPeripheral];
+                [_allWareArray removeObject:model];
                 break;
                 
             default:
@@ -121,6 +122,32 @@ DEF_SINGLETON(BLTManager)
         NSLog(@"没有绑定设备>>>>请选择设备>>%@",_allWareArray);
         SHOWMBProgressHUD(@"没有绑定设备,请去绑定设备", nil, nil, NO, 1.0);
     }
+    
+        NSArray * Devices=[[NSMutableArray alloc]initWithArray:[self sortByNumberWithArray:_allWareArray withSEC:NO]];
+    [self updateViewsFromModel];
+    
+}
+
+#pragma mark --- 按RSSI排序 ---
+- (NSArray *)sortByNumberWithArray:(NSArray *)array withSEC:(BOOL)sec
+{
+    NSMutableArray *muArray = [NSMutableArray arrayWithArray:array];
+    
+    [muArray sortUsingComparator:^NSComparisonResult(id obj1, id obj2)
+     {
+         BltModel *model1 = (BltModel *)obj1;
+         BltModel *model2 = (BltModel *)obj2;
+         
+         if ((model1.bltRSSI > model2.bltRSSI ) == sec)
+         {
+             return NSOrderedAscending;
+         }
+         else
+         {
+             return NSOrderedDescending;
+         }
+     }];
+    return muArray;
 }
 
 - (void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary *)advertisementData RSSI:(NSNumber *)RSSI
@@ -327,25 +354,6 @@ DEF_SINGLETON(BLTManager)
     {
         _updateModelBlock(nil);
     }
-    
-}
-
-- (NSArray *)sortByNumberWithArray:(NSMutableArray *)array
-{
-    NSArray *sortedArray = [array sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
-        
-        BltModel *model1 = (BltModel *)obj1;
-        BltModel *model2 = (BltModel *)obj2;
-        if (model1.bltRSSI > model2.bltRSSI)
-        {
-            return NSOrderedAscending;
-        }
-        else
-        {
-            return NSOrderedDescending;
-        }
-    }];
-    return sortedArray;
 }
 
 - (BOOL)checkBoind

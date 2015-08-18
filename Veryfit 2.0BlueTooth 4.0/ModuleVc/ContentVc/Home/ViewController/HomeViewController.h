@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "DeviceTableViewCell.h"
+#import "FunctionViewController.h"
 
 @interface HomeViewController : UIViewController <UITableViewDataSource,UITableViewDelegate>
 

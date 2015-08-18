@@ -139,6 +139,10 @@
 		B9CDE4F21B707A9500D5D1E9 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B9CDE4F01B707A9500D5D1E9 /* Icon@2x.png */; };
 		B9CDE4F31B707A9500D5D1E9 /* launch_5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B9CDE4F11B707A9500D5D1E9 /* launch_5@2x.png */; };
 		B9CDE4F51B707B2600D5D1E9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B9CDE4F41B707B2600D5D1E9 /* Images.xcassets */; };
+		B9D5A9421B82DB6800E54C5E /* FunctionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D5A9401B82DB6800E54C5E /* FunctionViewController.m */; };
+		B9D5A9431B82DB6800E54C5E /* FunctionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9D5A9411B82DB6800E54C5E /* FunctionViewController.xib */; };
+		B9D5A9461B82DBC700E54C5E /* NavViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D5A9451B82DBC700E54C5E /* NavViewController.m */; };
+		B9D5A9481B82DE3400E54C5E /* back_6@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B9D5A9471B82DE3400E54C5E /* back_6@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -398,6 +402,12 @@
 		B9CDE4F01B707A9500D5D1E9 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		B9CDE4F11B707A9500D5D1E9 /* launch_5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "launch_5@2x.png"; sourceTree = "<group>"; };
 		B9CDE4F41B707B2600D5D1E9 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		B9D5A93F1B82DB6800E54C5E /* FunctionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FunctionViewController.h; sourceTree = "<group>"; };
+		B9D5A9401B82DB6800E54C5E /* FunctionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FunctionViewController.m; sourceTree = "<group>"; };
+		B9D5A9411B82DB6800E54C5E /* FunctionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FunctionViewController.xib; sourceTree = "<group>"; };
+		B9D5A9441B82DBC700E54C5E /* NavViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavViewController.h; sourceTree = "<group>"; };
+		B9D5A9451B82DBC700E54C5E /* NavViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavViewController.m; sourceTree = "<group>"; };
+		B9D5A9471B82DE3400E54C5E /* back_6@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back_6@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -674,6 +684,7 @@
 		B9C6738B1B6F79430048697C /* ContentVc */ = {
 			isa = PBXGroup;
 			children = (
+				B9D5A93B1B82DB2900E54C5E /* Function */,
 				B951BBFF1B783E7800A8F120 /* Home */,
 				B9DD098B1B6FA1DC00581895 /* HotMoxibustion */,
 				B9DD09871B6FA1DC00581895 /* HealthManagement */,
@@ -696,6 +707,7 @@
 		B9C673911B6F79430048697C /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				B9D5A9471B82DE3400E54C5E /* back_6@2x.png */,
 				B96911231B79F0CB0031BA2B /* login_right_5s@2x.png */,
 				B9CDE4F01B707A9500D5D1E9 /* Icon@2x.png */,
 				B9CDE4F11B707A9500D5D1E9 /* launch_5@2x.png */,
@@ -1043,6 +1055,8 @@
 		B9CDE4A81B706F9C00D5D1E9 /* PublicView */ = {
 			isa = PBXGroup;
 			children = (
+				B9D5A9441B82DBC700E54C5E /* NavViewController.h */,
+				B9D5A9451B82DBC700E54C5E /* NavViewController.m */,
 				B9CDE4A91B706FB000D5D1E9 /* NavLabel.h */,
 				B9CDE4AA1B706FB000D5D1E9 /* NavLabel.m */,
 				B953F7841B70AE56006263AE /* ZJSwitch.h */,
@@ -1078,6 +1092,40 @@
 				B9CDE4BC1B70753B00D5D1E9 /* MineVc.m */,
 			);
 			path = ViewControll;
+			sourceTree = "<group>";
+		};
+		B9D5A93B1B82DB2900E54C5E /* Function */ = {
+			isa = PBXGroup;
+			children = (
+				B9D5A93D1B82DB2900E54C5E /* Model */,
+				B9D5A93E1B82DB2900E54C5E /* View */,
+				B9D5A93C1B82DB2900E54C5E /* FunctionVC */,
+			);
+			path = Function;
+			sourceTree = "<group>";
+		};
+		B9D5A93C1B82DB2900E54C5E /* FunctionVC */ = {
+			isa = PBXGroup;
+			children = (
+				B9D5A93F1B82DB6800E54C5E /* FunctionViewController.h */,
+				B9D5A9401B82DB6800E54C5E /* FunctionViewController.m */,
+				B9D5A9411B82DB6800E54C5E /* FunctionViewController.xib */,
+			);
+			path = FunctionVC;
+			sourceTree = "<group>";
+		};
+		B9D5A93D1B82DB2900E54C5E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		B9D5A93E1B82DB2900E54C5E /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		B9DD09871B6FA1DC00581895 /* HealthManagement */ = {
@@ -1243,6 +1291,7 @@
 				B9C90A211B71023700C708C3 /* public_bottom_button_me_select6@2x.png in Resources */,
 				B9C673391B6F5E4C0048697C /* Main.storyboard in Resources */,
 				B9CDE4F21B707A9500D5D1E9 /* Icon@2x.png in Resources */,
+				B9D5A9481B82DE3400E54C5E /* back_6@2x.png in Resources */,
 				B9C90A231B71023700C708C3 /* public_bottom_button_rejiu_select_6@2x.png in Resources */,
 				B953F77D1B70AA28006263AE /* 3rejiu_addmode_6@2x.png in Resources */,
 				B953F77F1B70AA28006263AE /* 3rejiu_adjust_plus_press_6@2x.png in Resources */,
@@ -1254,6 +1303,7 @@
 				B9C90A251B71047F00C708C3 /* 3rejiu_minutes_6@2x.png in Resources */,
 				B9C90A221B71023700C708C3 /* public_bottom_button_rejiu_normal_6@2x.png in Resources */,
 				B9C674871B6F79430048697C /* IQKeyboardManager.bundle in Resources */,
+				B9D5A9431B82DB6800E54C5E /* FunctionViewController.xib in Resources */,
 				B9CDE4F31B707A9500D5D1E9 /* launch_5@2x.png in Resources */,
 				B9C90A171B70FDD200C708C3 /* 3rejiu_1bg_6@2x.png in Resources */,
 				B9C674681B6F79430048697C /* DateTools.bundle in Resources */,
@@ -1332,6 +1382,7 @@
 				B9C6748E1B6F79430048697C /* MJRefreshGifHeader.m in Sources */,
 				B9C674A21B6F79430048697C /* XYPopupViewHelper.m in Sources */,
 				B951BC141B78A4CD00A8F120 /* BLTManager.m in Sources */,
+				B9D5A9461B82DBC700E54C5E /* NavViewController.m in Sources */,
 				B9C6748D1B6F79430048697C /* MJRefreshGifFooter.m in Sources */,
 				B9C674831B6F79430048697C /* IQBarButtonItem.m in Sources */,
 				B9C674A61B6F79430048697C /* zip.c in Sources */,
@@ -1368,6 +1419,7 @@
 				B9C674781B6F79430048697C /* LKDBHelper.m in Sources */,
 				B9C6744F1B6F79430048697C /* NSDate+Simple.m in Sources */,
 				B9C6748B1B6F79430048697C /* MJRefreshConst.m in Sources */,
+				B9D5A9421B82DB6800E54C5E /* FunctionViewController.m in Sources */,
 				B9C674691B6F79430048697C /* DTError.m in Sources */,
 				B9C6747B1B6F79430048697C /* NSObject+LKModel.m in Sources */,
 				B9C674A81B6F79430048697C /* YYJSONHelper.m in Sources */,
