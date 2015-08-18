@@ -31,12 +31,8 @@ DEF_SINGLETON(BLTManager)
     _centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
     _scanTime = 3.0;
     
-    [BLTPeripheral sharedInstance].connectBlock = ^ ()
-        {
-            
-        };
+    [self loadRssi];
     }
-    
     return self;
 }
 
@@ -52,8 +48,25 @@ DEF_SINGLETON(BLTManager)
 {
     _model.bltRSSI = [NSString stringWithFormat:@"%ld", (long)RSSI];
     NSLog(@"更新信号强度:%@",_model.bltRSSI);
+    NSString *rssiValue = [NSString stringWithFormat:@"%lu",RSSI];
     
-    [self updateViewsFromModel];
+    NSArray *getArray = [[NSArray alloc] initWithArray:_allWareArray];
+    for (BltModel *model in getArray)
+    {
+        if ([model.bltUUID isEqualToString:_model.bltUUID])
+        {
+            [_allWareArray removeObject:model];
+            [_allWareArray addObject:_model];
+        }
+    }
+    NSArray * Devices=[[NSMutableArray alloc]initWithArray:[self sortByNumberWithArray:_allWareArray withSEC:NO]];
+    _allWareArray = [[NSMutableArray alloc] initWithArray:Devices];
+    
+    if (_BLTManagerHandleBlock)
+    {
+        _BLTManagerHandleBlock (BLTModelRssi ,rssiValue);
+    }
+    
 }
 
 - (void)centralManagerDidUpdateState:(CBCentralManager *)central
@@ -61,12 +74,16 @@ DEF_SINGLETON(BLTManager)
     if (central.state == CBCentralManagerStatePoweredOn)
     {
         [self scanDevice:_scanTime];
+        if (_BLTManagerHandleBlock)
+        {
+            _BLTManagerHandleBlock(BLTModelPowerOn,nil);
+        }
     }
     else
     {
-        if (_BltManagerDisConnectBlock)
+        if (_BLTManagerHandleBlock)
         {
-            _BltManagerDisConnectBlock();
+            _BLTManagerHandleBlock(BLTModelPowerOff,nil);
         }
     }
 }
@@ -123,7 +140,7 @@ DEF_SINGLETON(BLTManager)
         SHOWMBProgressHUD(@"没有绑定设备,请去绑定设备", nil, nil, NO, 1.0);
     }
     
-        NSArray * Devices=[[NSMutableArray alloc]initWithArray:[self sortByNumberWithArray:_allWareArray withSEC:NO]];
+//        NSArray * Devices=[[NSMutableArray alloc]initWithArray:[self sortByNumberWithArray:_allWareArray withSEC:NO]];
     [self updateViewsFromModel];
     
 }
@@ -298,21 +315,17 @@ DEF_SINGLETON(BLTManager)
 //        [BLTDFUHelper sharedInstance].updatePeripheral = _discoverPeripheral;
     }
 
-    if (_BltManagerDidConnectBlock)
+    if (_BLTManagerHandleBlock)
     {
-        _BltManagerDidConnectBlock();
+        _BLTManagerHandleBlock(BLTModelDidConnect,nil);
     }
-    
-    
-//    [self loadRssi];
-    
 }
 
 - (void)centralManager:(CBCentralManager *)central didDisconnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error
 {
-    if (_BltManagerDisConnectBlock)
+    if (_BLTManagerHandleBlock)
     {
-        _BltManagerDisConnectBlock();
+        _BLTManagerHandleBlock(BLTModelDisConnect,nil);
     }
     
     if (!_isUpdateing)
@@ -350,9 +363,9 @@ DEF_SINGLETON(BLTManager)
 // 只要外围设备发生变化了就通知刷新
 - (void)updateViewsFromModel
 {
-    if (_updateModelBlock)
+    if (_BLTManagerHandleBlock)
     {
-        _updateModelBlock(nil);
+        _BLTManagerHandleBlock(BLTModelUpdateValue,_allWareArray);
     }
 }
 
@@ -368,23 +381,26 @@ DEF_SINGLETON(BLTManager)
     }
 }
 // 绑定选中设备
-- (void)boindDeviceWith:(BltManagerBoind)boindState
+- (void)boindDevice
 {
     [BOINDUUID setObjectValue:_model.bltUUID];
+    _model.isBoind = YES;
     
-    if (boindState)
+    if (_BLTManagerHandleBlock)
     {
-        boindState(YES);
+        _BLTManagerHandleBlock(BLTModelBoind,nil);
     }
 }
 
 // 解绑设备
-- (void)removeBoindWith:(BltManagerRemoveBoind)removeBoindState
+- (void)removeBoind
 {
     [BOINDUUID setObjectValue:NULL];
-    if (removeBoindState)
+    _model.isBoind = NO;
+    
+    if (_BLTManagerHandleBlock)
     {
-        removeBoindState (YES);
+        _BLTManagerHandleBlock (BLTModelRemoveBoind,nil);
     }
     [self disConnectPeripheral];
 }

@@ -82,22 +82,64 @@
     [BLTManager sharedInstance];
     
     DEF_WEAKSELF_(HomeViewController)
-    [BLTManager sharedInstance].updateModelBlock = ^(NSArray *list)
+    [BLTManager sharedInstance].BLTManagerHandleBlock = ^(BLTModelConnectState type,id object)
     {
-        [weakSelf updateDeviceModel];
+        NSLog(@"BLTModelConnectState>>>%d",type);
+        if (type == BLTModelUpdateValue)
+        {
+            [weakSelf updateDeviceModel];
+        }
+        else if (type == BLTModelDidConnect)
+         {
+             SHOWMBProgressHUD(@"连接成功", nil, nil, NO, 1.0);
+            [weakSelf updateDeviceModel];
+         }
+        else if (type == BLTModelDisConnect)
+        {
+            SHOWMBProgressHUD(@"断开连接", nil, nil, NO, 1.0);
+            [weakSelf updateDeviceModel];
+        }
+        else if (type == BLTModelPowerOn)
+         {
+             NSLog(@"手机蓝牙打开");
+         }
+        else if (type == BLTModelPowerOff)
+        {
+            NSLog(@"手机蓝牙关闭");
+        }
+        else if (type == BLTModelRssi)
+        {
+            NSLog(@"Rssi:>>>>>%@",object);
+            [weakSelf updateDeviceModel];
+//            SHOWMBProgressHUD(object, nil, nil, NO, 1.0);
+        }
+        else if (type == BLTModelBoind)
+        {
+         SHOWMBProgressHUD(@"绑定成功", nil, nil, NO, 1.0);
+        }
+        else if (type == BLTModelRemoveBoind)
+        {
+         SHOWMBProgressHUD(@"解绑成功", nil, nil, NO, 1.0);
+        }
+
+        
     };
-    
-    [BLTManager sharedInstance].BltManagerDidConnectBlock = ^()
-    {
-        SHOWMBProgressHUD(@"连接成功", nil, nil, NO, 1.0);
-        [weakSelf updateDeviceModel];
-    };
-    
-    [BLTManager sharedInstance].BltManagerDisConnectBlock = ^()
-    {
-        SHOWMBProgressHUD(@"断开连接", nil, nil, NO, 1.0);
-        [weakSelf updateDeviceModel];
-    };
+//    [BLTManager sharedInstance].updateModelBlock = ^(NSArray *list)
+//    {
+//        [weakSelf updateDeviceModel];
+//    };
+//    
+//    [BLTManager sharedInstance].BltManagerDidConnectBlock = ^()
+//    {
+//        SHOWMBProgressHUD(@"连接成功", nil, nil, NO, 1.0);
+//        [weakSelf updateDeviceModel];
+//    };
+//    
+//    [BLTManager sharedInstance].BltManagerDisConnectBlock = ^()
+//    {
+//        SHOWMBProgressHUD(@"断开连接", nil, nil, NO, 1.0);
+//        [weakSelf updateDeviceModel];
+//    };
     
     
     NSSortDescriptor *descriptor = [[NSSortDescriptor alloc]initWithKey:nil ascending:YES];
@@ -160,21 +202,12 @@
 
 - (void)boindButtonClick:(NavButton *)sender
 {
-    [[BLTManager sharedInstance]boindDeviceWith:^(BOOL state) {
-        
-        if (state)
-        {
-            SHOWMBProgressHUD(@"绑定成功", nil, nil, NO, 1.0);
-        }
-    }];
+    [[BLTManager sharedInstance]boindDevice];
 }
 
 - (void)removeBoindButtonClick:(NavButton *)sender
 {
-    [[BLTManager sharedInstance]removeBoindWith:^(BOOL state)
-    {
-         SHOWMBProgressHUD(@"解绑成功", nil, nil, NO, 1.0);
-    }];
+    [[BLTManager sharedInstance]removeBoind];
 }
 
 - (void)viewWillAppear:(BOOL)animated

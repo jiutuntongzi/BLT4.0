@@ -38,29 +38,6 @@ DEF_SINGLETON(BLTPeripheral)
 - (void)setPeripheral:(CBPeripheral *)peripheral
 {
     _peripheral = peripheral;
-    
-    if (peripheral)
-    {
-        // [self startUpdateRSSI];
-    }
-    else
-    {
-        // [self stopUpdateRSSI];
-    }
-}
-
-- (void)loadBltManager
-{
-    DEF_WEAKSELF_(BLTPeripheral)
-    [BLTManager sharedInstance].BltManagerDidConnectBlock = ^(BltModel *model)
-    {
-        [weakSelf startUpdateRSSI];
-    };
-    
-    [BLTManager sharedInstance].BltManagerDisConnectBlock = ^(BltModel *model)
-    {
-        [weakSelf stopUpdateRSSI];
-    };
 }
 
 - (void)startUpdateRSSI
@@ -69,7 +46,7 @@ DEF_SINGLETON(BLTPeripheral)
     
     if (!_timer)
     {
-        _timer = [NSTimer scheduledTimerWithTimeInterval:10.0 target:self selector:@selector(updateRSSI) userInfo:nil repeats:YES];
+        _timer = [NSTimer scheduledTimerWithTimeInterval:5.0 target:self selector:@selector(updateRSSI) userInfo:nil repeats:YES];
     }
 }
 

@@ -34,26 +34,32 @@
 //} BLTModelConnectState;
 
 typedef enum {
+    BLTModelUpdateValue = 0, // 蓝牙更新设备
     BLTModelDidConnect = 1,  // 已连接
     BLTModelDisConnect = 2,  // 未连接
-    BLTModelPowerOn = 3,
-    BLTModelPowerOff = 4,
-    
+    BLTModelPowerOn = 3,     // 蓝牙打开
+    BLTModelPowerOff = 4,    // 蓝牙关闭
+    BLTModelBoind = 5,       // 蓝牙绑定成功
+    BLTModelRemoveBoind = 6, // 蓝牙解绑成功
+    BLTModelRssi = 7         // 蓝牙更新rssi
     
 }BLTModelConnectState;
 
 @interface BLTManager : NSObject
 
 // 更新蓝牙
-typedef void(^BLTManagerUpdateModel)(NSArray *list);
-typedef void(^BltManagerBoind) (BOOL state);
-typedef void(^BltManagerRemoveBoind) (BOOL state);
-typedef void(^BltManagerDidConnect)();
-typedef void(^BltManagerDisConnect)();
+//typedef void(^BLTManagerUpdateModel)(NSArray *list); 
+//typedef void(^BltManagerBoind) (BOOL state);
+//typedef void(^BltManagerRemoveBoind) (BOOL state);
+//typedef void(^BltManagerDidConnect)();
+//typedef void(^BltManagerDisConnect)();
 
-@property (nonatomic, strong) BLTManagerUpdateModel updateModelBlock;
-@property (nonatomic, strong) BltManagerDidConnect BltManagerDidConnectBlock;
-@property (nonatomic, strong) BltManagerDisConnect BltManagerDisConnectBlock;
+typedef void(^BLTManagerHandle)(BLTModelConnectState Type,id object);
+
+//@property (nonatomic, strong) BLTManagerUpdateModel updateModelBlock;
+//@property (nonatomic, strong) BltManagerDidConnect BltManagerDidConnectBlock;
+//@property (nonatomic, strong) BltManagerDisConnect BltManagerDisConnectBlock;
+@property (nonatomic, strong) BLTManagerHandle BLTManagerHandleBlock;
 
 @property (nonatomic, strong) BltModel *model;
 @property (nonatomic, assign) BOOL isUpdateing;
@@ -65,6 +71,7 @@ AS_SINGLETON(BLTManager)
 
 // 不取消当前设备的情况下扫描
 - (void)scanDevice:(CGFloat)time;
+
 
 // 停止扫描.
 - (void)stopScan;
@@ -82,9 +89,9 @@ AS_SINGLETON(BLTManager)
 - (BOOL)checkBoind;
 
 // 绑定选中设备
-- (void)boindDeviceWith:(BltManagerBoind)boindState;
+- (void)boindDevice;
 
 // 解绑设备
-- (void)removeBoindWith:(BltManagerRemoveBoind)removeBoindState;
+- (void)removeBoind;
 
 @end

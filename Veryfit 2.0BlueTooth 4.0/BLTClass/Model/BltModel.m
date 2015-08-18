@@ -18,7 +18,6 @@
         _bltName = @"";
         _bltUUID = @"";
         _bltRSSI = @"";
-        
     }
     return self;
 }
@@ -80,6 +79,19 @@
     }
     
     return NO;
+}
+
+- (void)setBltRSSI:(NSString *)bltRSSI
+{
+    _bltRSSI = bltRSSI;
+    [self updateCurrentModelToDB];
+}
+
+- (void)setIsBoind:(BOOL)isBoind
+{
+    _isBoind = isBoind;
+    
+    [self updateCurrentModelToDB];
 }
 
 // 主建
