@@ -11,4 +11,7 @@
 
 @interface FunctionViewController : NavViewController
 
+- (IBAction)photoControl:(NavButton *)sender;
+@property (weak, nonatomic) IBOutlet NavButton *photoControl;
+
 @end

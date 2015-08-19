@@ -95,6 +95,44 @@ DEF_SINGLETON(BLTPeripheral)
     }
 }
 
+- (void)senderDataToPeripheral:(NSData *)data
+{
+    if (_peripheral.state == CBPeripheralStateConnected)
+    {
+        CBUUID *serviceUUID = BLTUUID.uartServiceUUID;
+        CBUUID *charaUUID = BLTUUID.txCharacteristicUUID;
+        UInt8 val[20] = {0};
+        [data getBytes:&val length:data.length];
+        if (val[0] == 0x08)
+        {
+            charaUUID = BLTUUID.bigDataWriteCharacteristicUUID;
+        }
+        
+        CBService *service = [self searchServiceFromUUID:serviceUUID withPeripheral:_peripheral];
+        
+        if (!service)
+        {
+            NSLog(@"service有错误...");
+            [[BLTManager sharedInstance] disConnectPeripheral];
+            // SHOWMBProgressHUD(BL_Text(@"Error, reconnect"), nil, nil, NO, 3.0);
+            return;
+        }
+        
+        CBCharacteristic *chara = [self searchCharacteristcFromUUID:charaUUID withService:service];
+        if (!chara)
+        {
+            NSLog(@"chara有错误...");
+            [[BLTManager sharedInstance] disConnectPeripheral];
+            // SHOWMBProgressHUD(BL_Text(@"Error, reconnect"), nil, nil, NO, 3.0);
+            return;
+        }
+        
+        NSLog(@"写入数据..%@..%@", data, [BLTAcceptModel sharedInstance].updateValue);
+        [_peripheral writeValue:data forCharacteristic:chara type:_writeType];
+    }
+}
+
+
 #pragma mark --- CBPeripheralDelegate ---
 // 发现该设备所持有的所有服务
 - (void)peripheral:(CBPeripheral *)peripheral didDiscoverServices:(NSError *)error
@@ -252,7 +290,6 @@ DEF_SINGLETON(BLTPeripheral)
     }
 }
 
-
 // 向设备写数据时会触发该代理...
 - (void)peripheral:(CBPeripheral *)peripheral didWriteValueForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error
 {
@@ -320,6 +357,36 @@ DEF_SINGLETON(BLTPeripheral)
             }
         }
     }
+}
+
+// 匹配相应的服务
+- (CBService *)searchServiceFromUUID:(CBUUID *)uuid withPeripheral:(CBPeripheral *)peripheral
+{
+    for (int i = 0; i < peripheral.services.count; i++)
+    {
+        CBService *service = peripheral.services[i];
+        if ([service.UUID isEqual:uuid])
+        {
+            return service;
+        }
+    }
+    
+    return  nil;
+}
+
+// 匹配相应的具体特征
+- (CBCharacteristic *)searchCharacteristcFromUUID:(CBUUID *)uuid withService:(CBService *)service
+{
+    for (int i = 0; i < service.characteristics.count; i++)
+    {
+        CBCharacteristic *chara = service.characteristics[i];
+        if ([chara.UUID isEqual:uuid])
+        {
+            return chara;
+        }
+    }
+    
+    return nil;
 }
 
 @end

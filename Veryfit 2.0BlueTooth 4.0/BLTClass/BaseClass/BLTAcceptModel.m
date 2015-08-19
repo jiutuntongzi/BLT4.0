@@ -25,7 +25,7 @@ DEF_SINGLETON(BLTAcceptModel)
 //        _indexArray = [[NSMutableArray alloc] init];
 //        
         // 直接启动蓝牙
-        [BLTManager sharedInstance];
+//        [BLTManager sharedInstance];
         
         // DEF_WEAKSELF_(BLTAcceptModel);
         
@@ -37,17 +37,16 @@ DEF_SINGLETON(BLTAcceptModel)
          *  @return
          */
         
-        [BLTPeripheral sharedInstance].updateBigDataBlock = ^(NSData *data) {
+        [BLTPeripheral sharedInstance].updateBigDataBlock = ^(NSData *data)
+        {
             [self updateBigData:data];
         };
         
-        [BLTPeripheral sharedInstance].updateBlock = ^(NSData *data, CBPeripheral *peripheral) {
+        [BLTPeripheral sharedInstance].updateBlock = ^(NSData *data, CBPeripheral *peripheral)
+        {
             [self acceptData:data withPeripheral:peripheral];
         };
-        
-        
     }
-    
     return self;
 }
 
@@ -58,7 +57,25 @@ DEF_SINGLETON(BLTAcceptModel)
 
 - (void)acceptData:(NSData *)data withPeripheral:(CBPeripheral *)peripheral
 {
-     NSLog(@"接受普通数据  >>>>%@",data);
+    NSLog(@"接受普通数据 >>>>%@",data);
+    
+    _type = BLTAcceptModelTypeSuccess;
+    UInt8 val[20] = {0};
+    [data getBytes:&val length:data.length];
+    
+    // NSLog(@"..%x..%x..%x..%x..%x...%x", val[0], val[1], val[2], val[3], val[4], val[5]);
+    id object = nil;
+    
+    if (val[0] == 0x06)
+    {
+        object = data;
+    }
+    
+    if (_updateValue)
+    {
+        _updateValue(object, _type);
+        _updateValue = nil;
+    }
 }
 
 

@@ -29,6 +29,8 @@
 #import "BltModel.h"
 #import "BLTManager.h"
 #import "BLTPeripheral.h"
+#import "BLTAcceptModel.h"
+#import "BLTSendModel.h"
 
 #import "NavLabel.h"
 #import "ZJSwitch.h"

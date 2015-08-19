@@ -21,6 +21,7 @@
 		B96911221B79E6BB0031BA2B /* BLTPeripheral.m in Sources */ = {isa = PBXBuildFile; fileRef = B96911211B79E6BB0031BA2B /* BLTPeripheral.m */; };
 		B96911241B79F0CB0031BA2B /* login_right_5s@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B96911231B79F0CB0031BA2B /* login_right_5s@2x.png */; };
 		B96911271B7A06B50031BA2B /* BLTAcceptModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B96911261B7A06B50031BA2B /* BLTAcceptModel.m */; };
+		B98717511B8486530036CD5E /* BLTSendModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B98717501B8486530036CD5E /* BLTSendModel.m */; };
 		B9C673301B6F5E4C0048697C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B9C6732F1B6F5E4C0048697C /* main.m */; };
 		B9C673331B6F5E4C0048697C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B9C673321B6F5E4C0048697C /* AppDelegate.m */; };
 		B9C673361B6F5E4C0048697C /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9C673351B6F5E4C0048697C /* ViewController.m */; };
@@ -178,6 +179,8 @@
 		B96911231B79F0CB0031BA2B /* login_right_5s@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_right_5s@2x.png"; sourceTree = "<group>"; };
 		B96911251B7A06B50031BA2B /* BLTAcceptModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLTAcceptModel.h; sourceTree = "<group>"; };
 		B96911261B7A06B50031BA2B /* BLTAcceptModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLTAcceptModel.m; sourceTree = "<group>"; };
+		B987174F1B8486530036CD5E /* BLTSendModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLTSendModel.h; sourceTree = "<group>"; };
+		B98717501B8486530036CD5E /* BLTSendModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLTSendModel.m; sourceTree = "<group>"; };
 		B9C6732A1B6F5E4C0048697C /* Warm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Warm.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9C6732E1B6F5E4C0048697C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B9C6732F1B6F5E4C0048697C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -487,6 +490,8 @@
 				B96911211B79E6BB0031BA2B /* BLTPeripheral.m */,
 				B96911251B7A06B50031BA2B /* BLTAcceptModel.h */,
 				B96911261B7A06B50031BA2B /* BLTAcceptModel.m */,
+				B987174F1B8486530036CD5E /* BLTSendModel.h */,
+				B98717501B8486530036CD5E /* BLTSendModel.m */,
 				B969111D1B7993D00031BA2B /* BLTUUID.h */,
 				B969111E1B7993D00031BA2B /* BLTUUID.m */,
 			);
@@ -1398,6 +1403,7 @@
 				B9C674901B6F79430048697C /* MJRefreshLegendFooter.m in Sources */,
 				B9C674951B6F79430048697C /* NSAlert+MKNetworkKitAdditions.m in Sources */,
 				B9C674A51B6F79430048697C /* unzip.c in Sources */,
+				B98717511B8486530036CD5E /* BLTSendModel.m in Sources */,
 				B9C90A2E1B710A4C00C708C3 /* HotmoxibustionModel.m in Sources */,
 				B9C674561B6F79430048697C /* UIScrollView+Simple.m in Sources */,
 				B9C6745A1B6F79430048697C /* ControlVC.m in Sources */,

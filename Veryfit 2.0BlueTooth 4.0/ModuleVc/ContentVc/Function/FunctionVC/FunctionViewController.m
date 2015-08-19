@@ -18,6 +18,8 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    [_photoControl setTitle:@"开启拍照" forState:UIControlStateNormal];
+    [_photoControl setTitle:@"关闭拍照" forState:UIControlStateSelected];
  
 }
 
@@ -37,5 +39,29 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+- (IBAction)photoControl:(NavButton *)sender
+{
+    if (_photoControl.selected)
+    {
+        _photoControl.selected = NO;
+    }
+    else
+    {
+        _photoControl.selected = YES;
+    }
+    [BLTSendModel sendControlTakePhotoState:_photoControl.selected WithUpdateBlock:^(id object, BLTAcceptModelType type)
+     {
+         if (_photoControl.selected)
+         {
+              SHOWMBProgressHUD(@"开启拍照模式", nil, nil, NO, 1.0);
+         }
+         else
+         {
+              SHOWMBProgressHUD(@"关闭拍照模式", nil, nil, NO, 1.0);
+         }
+    }];
+}
+
 
 @end
