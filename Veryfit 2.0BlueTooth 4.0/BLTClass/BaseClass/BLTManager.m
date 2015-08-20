@@ -9,7 +9,7 @@
 #import "BLTManager.h"
 #import "BLTPeripheral.h"
 #import "BLTUUID.h"
-
+#import "BackGroundTaskView.h"
 @interface BLTManager () <CBCentralManagerDelegate>
 
 @property (nonatomic, strong) CBCentralManager *centralManager;
@@ -29,9 +29,12 @@ DEF_SINGLETON(BLTManager)
     {
     _allWareArray = [[NSMutableArray alloc] initWithCapacity:0];
     _centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
-    _scanTime = 3.0;
+    _scanTime = CONNECTTIME;
     
     [self loadRssi];
+        
+    [BackGroundTaskView sharedInstance];
+        
     }
     return self;
 }
@@ -47,7 +50,7 @@ DEF_SINGLETON(BLTManager)
 - (void)updateRSSI:(NSInteger)RSSI
 {
     _model.bltRSSI = [NSString stringWithFormat:@"%ld", (long)RSSI];
-    NSLog(@"更新信号强度:%@",_model.bltRSSI);
+//    NSLog(@"更新信号强度:%@",_model.bltRSSI);
     NSString *rssiValue = [NSString stringWithFormat:@"%lu",RSSI];
     
     NSArray *getArray = [[NSArray alloc] initWithArray:_allWareArray];
@@ -59,8 +62,9 @@ DEF_SINGLETON(BLTManager)
             [_allWareArray addObject:_model];
         }
     }
-    NSArray * Devices=[[NSMutableArray alloc]initWithArray:[self sortByNumberWithArray:_allWareArray withSEC:NO]];
-    _allWareArray = [[NSMutableArray alloc] initWithArray:Devices];
+//    NSArray * Devices=[[NSMutableArray alloc]initWithArray:[self sortByNumberWithArray:_allWareArray withSEC:NO]];
+//    _allWareArray = [[NSMutableArray alloc] initWithArray:Devices];
+    [self updateViewsFromModel];
     
     if (_BLTManagerHandleBlock)
     {
@@ -123,6 +127,16 @@ DEF_SINGLETON(BLTManager)
                                         options:nil];
 }
 
+- (BOOL)isConnect
+{
+    if (_discoverPeripheral.state == CBPeripheralStateConnected)
+    {
+        return YES;
+    }
+    
+    return NO;
+}
+
 - (void)stopScan
 {
     SHOWMBProgressHUD(@"停止扫描",nil, nil, NO, 1.0);
@@ -142,7 +156,6 @@ DEF_SINGLETON(BLTManager)
     
 //        NSArray * Devices=[[NSMutableArray alloc]initWithArray:[self sortByNumberWithArray:_allWareArray withSEC:NO]];
     [self updateViewsFromModel];
-    
 }
 
 #pragma mark --- 按RSSI排序 ---
@@ -331,6 +344,7 @@ DEF_SINGLETON(BLTManager)
     if (!_isUpdateing)
     {
         [[BLTPeripheral sharedInstance]stopUpdateRSSI];
+        [[BLTManager sharedInstance]connectDevice];
     }
     else
     {
@@ -363,6 +377,23 @@ DEF_SINGLETON(BLTManager)
 // 只要外围设备发生变化了就通知刷新
 - (void)updateViewsFromModel
 {
+    // 冒泡排序
+    for (int i = 0; i < _allWareArray.count - 1; i++)
+    {
+        for (int j = 0; j < _allWareArray.count - 1 - i; j++)
+        {
+            BltModel *model1 = _allWareArray[j];
+            BltModel *model2 = _allWareArray[j +1];
+            
+            if (model1.bltRSSI.intValue > model2.bltRSSI.intValue)
+            {
+                BltModel *temp = _allWareArray[j];
+                _allWareArray[j] = _allWareArray[j + 1];
+                _allWareArray[j + 1] = temp;
+            }
+        }
+    }
+    
     if (_BLTManagerHandleBlock)
     {
         _BLTManagerHandleBlock(BLTModelUpdateValue,_allWareArray);
@@ -379,30 +410,6 @@ DEF_SINGLETON(BLTManager)
     {
         return NO;
     }
-}
-// 绑定选中设备
-- (void)boindDevice
-{
-    [BOINDUUID setObjectValue:_model.bltUUID];
-    _model.isBoind = YES;
-    
-    if (_BLTManagerHandleBlock)
-    {
-        _BLTManagerHandleBlock(BLTModelBoind,nil);
-    }
-}
-
-// 解绑设备
-- (void)removeBoind
-{
-    [BOINDUUID setObjectValue:NULL];
-    _model.isBoind = NO;
-    
-    if (_BLTManagerHandleBlock)
-    {
-        _BLTManagerHandleBlock (BLTModelRemoveBoind,nil);
-    }
-    [self disConnectPeripheral];
 }
 
 @end

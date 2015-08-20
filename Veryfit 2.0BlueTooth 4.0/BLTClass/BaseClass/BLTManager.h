@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #define BOINDUUID @"BOINDUUID"
-
+#define CONNECTTIME 20.0
 //typedef enum {
 //    BLTModelDisConnect = 0,             // 未连接
 //    BLTModelDidConnect = 1,             // 已连接
@@ -72,7 +72,6 @@ AS_SINGLETON(BLTManager)
 // 不取消当前设备的情况下扫描
 - (void)scanDevice:(CGFloat)time;
 
-
 // 停止扫描.
 - (void)stopScan;
 
@@ -88,10 +87,6 @@ AS_SINGLETON(BLTManager)
 // 查看是否绑定设备
 - (BOOL)checkBoind;
 
-// 绑定选中设备
-- (void)boindDevice;
-
-// 解绑设备
-- (void)removeBoind;
+- (BOOL)isConnect;
 
 @end

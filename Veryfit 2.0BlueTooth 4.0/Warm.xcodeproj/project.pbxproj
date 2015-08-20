@@ -133,6 +133,8 @@
 		B9C90A281B71085A00C708C3 /* HotmoxibustionModelTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = B9C90A271B71085A00C708C3 /* HotmoxibustionModelTableView.m */; };
 		B9C90A2B1B71087600C708C3 /* HotmoxibustionModelTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B9C90A2A1B71087600C708C3 /* HotmoxibustionModelTableViewCell.m */; };
 		B9C90A2E1B710A4C00C708C3 /* HotmoxibustionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B9C90A2D1B710A4C00C708C3 /* HotmoxibustionModel.m */; };
+		B9C985711B85814E001986D0 /* BackGroundTaskView.m in Sources */ = {isa = PBXBuildFile; fileRef = B9C985701B85814E001986D0 /* BackGroundTaskView.m */; };
+		B9C985741B85B090001986D0 /* FuncionViewTable.m in Sources */ = {isa = PBXBuildFile; fileRef = B9C985731B85B090001986D0 /* FuncionViewTable.m */; };
 		B9CDE4AB1B706FB000D5D1E9 /* NavLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = B9CDE4AA1B706FB000D5D1E9 /* NavLabel.m */; };
 		B9CDE4B21B7074CB00D5D1E9 /* HotMoxibustionVc.m in Sources */ = {isa = PBXBuildFile; fileRef = B9CDE4B11B7074CB00D5D1E9 /* HotMoxibustionVc.m */; };
 		B9CDE4BA1B70752A00D5D1E9 /* HealthManagementVc.m in Sources */ = {isa = PBXBuildFile; fileRef = B9CDE4B91B70752A00D5D1E9 /* HealthManagementVc.m */; };
@@ -394,6 +396,10 @@
 		B9C90A2A1B71087600C708C3 /* HotmoxibustionModelTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HotmoxibustionModelTableViewCell.m; sourceTree = "<group>"; };
 		B9C90A2C1B710A4C00C708C3 /* HotmoxibustionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HotmoxibustionModel.h; sourceTree = "<group>"; };
 		B9C90A2D1B710A4C00C708C3 /* HotmoxibustionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HotmoxibustionModel.m; sourceTree = "<group>"; };
+		B9C9856F1B85814E001986D0 /* BackGroundTaskView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackGroundTaskView.h; sourceTree = "<group>"; };
+		B9C985701B85814E001986D0 /* BackGroundTaskView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackGroundTaskView.m; sourceTree = "<group>"; };
+		B9C985721B85B090001986D0 /* FuncionViewTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FuncionViewTable.h; sourceTree = "<group>"; };
+		B9C985731B85B090001986D0 /* FuncionViewTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FuncionViewTable.m; sourceTree = "<group>"; };
 		B9CDE4A91B706FB000D5D1E9 /* NavLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavLabel.h; sourceTree = "<group>"; };
 		B9CDE4AA1B706FB000D5D1E9 /* NavLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavLabel.m; sourceTree = "<group>"; };
 		B9CDE4B01B7074CB00D5D1E9 /* HotMoxibustionVc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HotMoxibustionVc.h; sourceTree = "<group>"; };
@@ -494,6 +500,8 @@
 				B98717501B8486530036CD5E /* BLTSendModel.m */,
 				B969111D1B7993D00031BA2B /* BLTUUID.h */,
 				B969111E1B7993D00031BA2B /* BLTUUID.m */,
+				B9C9856F1B85814E001986D0 /* BackGroundTaskView.h */,
+				B9C985701B85814E001986D0 /* BackGroundTaskView.m */,
 			);
 			path = BaseClass;
 			sourceTree = "<group>";
@@ -1129,6 +1137,8 @@
 		B9D5A93E1B82DB2900E54C5E /* View */ = {
 			isa = PBXGroup;
 			children = (
+				B9C985721B85B090001986D0 /* FuncionViewTable.h */,
+				B9C985731B85B090001986D0 /* FuncionViewTable.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1395,6 +1405,7 @@
 				B9C674701B6F79430048697C /* README.md in Sources */,
 				B9C674961B6F79430048697C /* NSData+MKBase64.m in Sources */,
 				B9C6744A1B6F79430048697C /* XYSystemInfo.m in Sources */,
+				B9C985741B85B090001986D0 /* FuncionViewTable.m in Sources */,
 				B9C6748C1B6F79430048697C /* MJRefreshFooter.m in Sources */,
 				B9C673331B6F5E4C0048697C /* AppDelegate.m in Sources */,
 				B9C674971B6F79430048697C /* NSDate+RFC1123.m in Sources */,
@@ -1420,6 +1431,7 @@
 				B96911271B7A06B50031BA2B /* BLTAcceptModel.m in Sources */,
 				B9C90A151B70F56000C708C3 /* NavButton.m in Sources */,
 				B9C673301B6F5E4C0048697C /* main.m in Sources */,
+				B9C985711B85814E001986D0 /* BackGroundTaskView.m in Sources */,
 				B9C674AB1B6F7A1E0048697C /* ZKKViewController.m in Sources */,
 				B9C6747C1B6F79430048697C /* IQNSArray+Sort.m in Sources */,
 				B9C674781B6F79430048697C /* LKDBHelper.m in Sources */,

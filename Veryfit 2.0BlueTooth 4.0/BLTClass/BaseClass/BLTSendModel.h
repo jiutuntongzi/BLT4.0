@@ -18,7 +18,24 @@
 
 AS_SINGLETON(BLTSendModel)
 
+typedef enum
+{
+   BLTsendDeviceBasicInfo = 0x01,
+   BLTsendDeviceBasicFunction = 0x02,
+   BLTsendDeviceBasicTime = 0x03,
+   BLTsendDeviceBasicMacAddress = 0x04,
+   BLTsendDeviceBasicBattery = 0x05
+    
+}BLTsendDeviceInfoType;
+
 // 拍照控制
 + (void)sendControlTakePhotoState:(BOOL)type WithUpdateBlock:(BLTAcceptModelUpdateValue)block;
+
+// 绑定指令 type:yes为绑定 no 为解绑
++ (void)sendBoindDeviceState:(BOOL)type WithUpdateBlock:(BLTAcceptModelUpdateValue)block;
+
+// 获取设备信息 1 基本信息 2 支持功能 3 设备时间 4 获取mac地址 5 获取电池信息
++ (void)sendDeviceInfo:(BLTsendDeviceInfoType)type WithUpdateBlock:(BLTAcceptModelUpdateValue)block;
+
 
 @end

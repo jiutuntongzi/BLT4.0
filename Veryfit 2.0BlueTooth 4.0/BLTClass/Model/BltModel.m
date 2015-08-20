@@ -18,6 +18,12 @@
         _bltName = @"";
         _bltUUID = @"";
         _bltRSSI = @"";
+        _deviceID = @"";
+        _firmWare = @"";
+        _runType = @"";
+        _batteryState = @"";
+        _batteryValue = @"";
+        _boindFlag = @"";
     }
     return self;
 }
@@ -71,16 +77,6 @@
     }
 }
 
-- (BOOL)isConnected
-{
-    if (_peripheral.state == CBPeripheralStateConnected)
-    {
-        return YES;
-    }
-    
-    return NO;
-}
-
 - (void)setBltRSSI:(NSString *)bltRSSI
 {
     _bltRSSI = bltRSSI;
@@ -93,6 +89,8 @@
     
     [self updateCurrentModelToDB];
 }
+
+//- (void)
 
 // 主建
 + (NSString *)getPrimaryKey

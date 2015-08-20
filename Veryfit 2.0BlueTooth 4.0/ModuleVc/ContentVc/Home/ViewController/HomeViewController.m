@@ -69,22 +69,22 @@
     [disConnectButton addTarget:self action:@selector(disConnectButtonClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:disConnectButton];
     
-    NavButton *boindButton = [[NavButton alloc] initWithFrame:CGRectMake(10, 370, self.view.width - 20, 44)];
-    [boindButton setTitle:@"绑定设备" forState:UIControlStateNormal];
-    [boindButton addTarget:self action:@selector(boindButtonClick:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:boindButton];
-    
-    NavButton *removeBoindButton = [[NavButton alloc] initWithFrame:CGRectMake(10, 420, self.view.width - 20, 44)];
-    [removeBoindButton setTitle:@"解绑设备" forState:UIControlStateNormal];
-    [removeBoindButton addTarget:self action:@selector(removeBoindButtonClick:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:removeBoindButton];
+//    NavButton *boindButton = [[NavButton alloc] initWithFrame:CGRectMake(10, 370, self.view.width - 20, 44)];
+//    [boindButton setTitle:@"绑定设备" forState:UIControlStateNormal];
+//    [boindButton addTarget:self action:@selector(boindButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+//    [self.view addSubview:boindButton];
+//    
+//    NavButton *removeBoindButton = [[NavButton alloc] initWithFrame:CGRectMake(10, 420, self.view.width - 20, 44)];
+//    [removeBoindButton setTitle:@"解绑设备" forState:UIControlStateNormal];
+//    [removeBoindButton addTarget:self action:@selector(removeBoindButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+//    [self.view addSubview:removeBoindButton];
     
     [BLTManager sharedInstance];
     
     DEF_WEAKSELF_(HomeViewController)
     [BLTManager sharedInstance].BLTManagerHandleBlock = ^(BLTModelConnectState type,id object)
     {
-        NSLog(@"BLTModelConnectState>>>%d",type);
+//        NSLog(@"BLTModelConnectState>>>%d",type);
         if (type == BLTModelUpdateValue)
         {
             [weakSelf updateDeviceModel];
@@ -109,7 +109,7 @@
         }
         else if (type == BLTModelRssi)
         {
-            NSLog(@"Rssi:>>>>>%@",object);
+//            NSLog(@"Rssi:>>>>>%@",object);
             [weakSelf updateDeviceModel];
 //            SHOWMBProgressHUD(object, nil, nil, NO, 1.0);
         }
@@ -173,14 +173,14 @@
     }
     else
     {
-        [[BLTManager sharedInstance]scanDevice:5.0];
+        [[BLTManager sharedInstance]scanDevice:CONNECTTIME];
         sender.selected = YES;
     }
 }
 
 - (void)refreshButtonClick:(NavButton *)sender
 {
-    [[BLTManager sharedInstance]scanDevice:5.0];
+    [[BLTManager sharedInstance]scanDevice:CONNECTTIME];
 }
 
 - (void)connectButtonClick:(NavButton *)sender
@@ -202,12 +202,12 @@
 
 - (void)boindButtonClick:(NavButton *)sender
 {
-    [[BLTManager sharedInstance]boindDevice];
+
 }
 
 - (void)removeBoindButtonClick:(NavButton *)sender
 {
-    [[BLTManager sharedInstance]removeBoind];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated

@@ -57,18 +57,45 @@ DEF_SINGLETON(BLTAcceptModel)
 
 - (void)acceptData:(NSData *)data withPeripheral:(CBPeripheral *)peripheral
 {
-    NSLog(@"接受普通数据 >>>>%@",data);
+//    NSLog(@"接受普通数据 >>>>%@",data);
     
     _type = BLTAcceptModelTypeSuccess;
     UInt8 val[20] = {0};
     [data getBytes:&val length:data.length];
     
-    // NSLog(@"..%x..%x..%x..%x..%x...%x", val[0], val[1], val[2], val[3], val[4], val[5]);
+    NSLog(@"接受普通数据 [ command_id: %x |key:%x ] %x..%x..%x..%x..%x..%x ..%x ..%x", val[0], val[1], val[2], val[3], val[4], val[5],val[6],val[7],val[8],val[9]);
     id object = nil;
     
-    if (val[0] == 0x06)
+    if (val[0] == 0x06) // 进入拍照模式
     {
+        _type = BLTAcceptModelPhotoControl;
         object = data;
+    }
+    
+    else if (val[0] == 0x04 ) // 绑定指令
+    {
+        if (val [2] == 0x00)
+        {
+            if (val[1] == 0x01)
+            {
+                _type = BLTAcceptModelTypeBindingSuccess;
+            }
+            else
+            {
+                _type = BLTAcceptModelTypeRemoveBindingSuccess;
+            }
+        }
+        else
+        {
+            if (val[1] == 0x01)
+            {
+                _type = BLTAcceptModelTypeBindingFail;
+            }
+            else
+            {
+                _type = BLTAcceptModelTypeRemoveBindingFail;
+            }
+        }
     }
     
     if (_updateValue)

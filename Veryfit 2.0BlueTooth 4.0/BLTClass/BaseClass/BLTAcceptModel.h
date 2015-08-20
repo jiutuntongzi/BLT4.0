@@ -15,7 +15,9 @@ AS_SINGLETON(BLTAcceptModel)
 typedef enum {                                     // 详细的看接口参数。
     BLTAcceptModelTypeUnKnown = 0,                 // 无状态
     BLTAcceptModelTypeBindingSuccess,
+    BLTAcceptModelTypeBindingFail,
     BLTAcceptModelTypeRemoveBindingSuccess,
+    BLTAcceptModelTypeRemoveBindingFail,
     
 //    BLTAcceptModelTypeUnKnown = 0,               // 无状态
 //    BLTAcceptModelTypeBindingSuccess,            // 绑定成功
@@ -24,8 +26,9 @@ typedef enum {                                     // 详细的看接口参数�
 //    BLTAcceptModelTypeUnBindingSuccess,          // 解绑成功
 //    BLTAcceptModelTypeUnBindingFail,             // 解绑失败
 //    
-//    BLTAcceptModelTypeDevideInfo,                // 设备信息
-//    BLTAcceptModelTypeSetDateInfo,               // 时间信息
+      BLTAcceptModelTypeDeviceInfo,                // 设备信息
+      BLTAcceptModelTypeDeviceFunction,            // 设备支持功能
+      BLTAcceptModelTypeDeviceTime,                // 时间信息
 //    BLTAcceptModelTypeSetUserInfo,               // 用户信息
 //    BLTAcceptModelTypeSetAlarmClock,             // 设置闹钟
 //    BLTAcceptModelTypeSetRemind,                 // 设置久坐提醒

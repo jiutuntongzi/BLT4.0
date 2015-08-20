@@ -31,6 +31,55 @@ DEF_SINGLETON(BLTSendModel)
               withUpdate:block];
 }
 
+// 绑定指令 type:yes为绑定 no 为解绑
++ (void)sendBoindDeviceState:(BOOL)type WithUpdateBlock:(BLTAcceptModelUpdateValue)block
+{
+    if (type)
+    {
+        UInt8 val[6] = {0x04, 0x01, 0x01, 83, 0x55, 0xaa};
+        [self sendDataToWare:val
+                  withLength:6
+                  withUpdate:block];
+    }
+    else
+    {
+        UInt8 val[6] = {0x04, 0x02, 0x55, 0xaa, 0x55, 0xaa};
+        [self sendDataToWare:val
+                  withLength:6
+                  withUpdate:block];
+    }
+}
+
+// 获取设备信息 1 基本信息 2 支持功能 3 设备时间 4 获取mac地址 5 获取电池信息
++ (void)sendDeviceInfo:(BLTsendDeviceInfoType)type WithUpdateBlock:(BLTAcceptModelUpdateValue)block
+{
+    UInt8 val[2] = {0x02,type};
+    if (type == BLTsendDeviceBasicInfo)
+    {
+        
+    }
+    else if (type == BLTsendDeviceBasicFunction)
+    {
+        
+    }
+    else if (type == BLTsendDeviceBasicTime)
+    {
+        
+    }
+    else if (type == BLTsendDeviceBasicMacAddress)
+    {
+        
+    }
+    else if (type == BLTsendDeviceBasicBattery)
+    {
+        
+    }
+    
+    [self sendDataToWare:val
+              withLength:2
+              withUpdate:block];
+}
+
 + (void)sendDataToWare:(UInt8 *)val
             withLength:(NSInteger)length
             withUpdate:(BLTAcceptModelUpdateValue)block
@@ -43,6 +92,7 @@ DEF_SINGLETON(BLTSendModel)
     NSData *sData = [[NSData alloc] initWithBytes:val length:length];
     [[BLTPeripheral sharedInstance] senderDataToPeripheral:sData];
 }
+
 
 
 @end

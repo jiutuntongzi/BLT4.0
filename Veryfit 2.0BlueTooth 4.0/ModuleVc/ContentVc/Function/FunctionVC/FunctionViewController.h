@@ -8,10 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "NavViewController.h"
+#import "FuncionViewTable.h"
 
 @interface FunctionViewController : NavViewController
 
-- (IBAction)photoControl:(NavButton *)sender;
 @property (weak, nonatomic) IBOutlet NavButton *photoControl;
 
 @end
