@@ -200,16 +200,6 @@
     [[BLTManager sharedInstance]disConnectPeripheral];
 }
 
-- (void)boindButtonClick:(NavButton *)sender
-{
-
-}
-
-- (void)removeBoindButtonClick:(NavButton *)sender
-{
-    
-}
-
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];

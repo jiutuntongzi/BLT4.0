@@ -142,6 +142,8 @@
 		B9CDE4F21B707A9500D5D1E9 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B9CDE4F01B707A9500D5D1E9 /* Icon@2x.png */; };
 		B9CDE4F31B707A9500D5D1E9 /* launch_5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B9CDE4F11B707A9500D5D1E9 /* launch_5@2x.png */; };
 		B9CDE4F51B707B2600D5D1E9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B9CDE4F41B707B2600D5D1E9 /* Images.xcassets */; };
+		B9D0B9731B87204500DFBEF3 /* UserInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D0B9721B87204500DFBEF3 /* UserInfoModel.m */; };
+		B9D0B9761B87216500DFBEF3 /* UserInfoHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D0B9751B87216500DFBEF3 /* UserInfoHelper.m */; };
 		B9D5A9421B82DB6800E54C5E /* FunctionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D5A9401B82DB6800E54C5E /* FunctionViewController.m */; };
 		B9D5A9431B82DB6800E54C5E /* FunctionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9D5A9411B82DB6800E54C5E /* FunctionViewController.xib */; };
 		B9D5A9461B82DBC700E54C5E /* NavViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D5A9451B82DBC700E54C5E /* NavViewController.m */; };
@@ -411,6 +413,10 @@
 		B9CDE4F01B707A9500D5D1E9 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		B9CDE4F11B707A9500D5D1E9 /* launch_5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "launch_5@2x.png"; sourceTree = "<group>"; };
 		B9CDE4F41B707B2600D5D1E9 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		B9D0B9711B87204500DFBEF3 /* UserInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoModel.h; sourceTree = "<group>"; };
+		B9D0B9721B87204500DFBEF3 /* UserInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoModel.m; sourceTree = "<group>"; };
+		B9D0B9741B87216500DFBEF3 /* UserInfoHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoHelper.h; sourceTree = "<group>"; };
+		B9D0B9751B87216500DFBEF3 /* UserInfoHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoHelper.m; sourceTree = "<group>"; };
 		B9D5A93F1B82DB6800E54C5E /* FunctionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FunctionViewController.h; sourceTree = "<group>"; };
 		B9D5A9401B82DB6800E54C5E /* FunctionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FunctionViewController.m; sourceTree = "<group>"; };
 		B9D5A9411B82DB6800E54C5E /* FunctionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FunctionViewController.xib; sourceTree = "<group>"; };
@@ -511,6 +517,10 @@
 			children = (
 				B951BC0F1B7897FF00A8F120 /* BltModel.h */,
 				B951BC101B7897FF00A8F120 /* BltModel.m */,
+				B9D0B9711B87204500DFBEF3 /* UserInfoModel.h */,
+				B9D0B9721B87204500DFBEF3 /* UserInfoModel.m */,
+				B9D0B9741B87216500DFBEF3 /* UserInfoHelper.h */,
+				B9D0B9751B87216500DFBEF3 /* UserInfoHelper.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1359,6 +1369,7 @@
 				B9C6746A1B6F79430048697C /* DTTimePeriod.m in Sources */,
 				B9C674A41B6F79430048697C /* mztools.c in Sources */,
 				B9C674821B6F79430048697C /* IQTextView.m in Sources */,
+				B9D0B9731B87204500DFBEF3 /* UserInfoModel.m in Sources */,
 				B9CDE4BA1B70752A00D5D1E9 /* HealthManagementVc.m in Sources */,
 				B9C674AF1B6F7BAC0048697C /* ShareData.m in Sources */,
 				B951BC111B7897FF00A8F120 /* BltModel.m in Sources */,
@@ -1408,6 +1419,7 @@
 				B9C985741B85B090001986D0 /* FuncionViewTable.m in Sources */,
 				B9C6748C1B6F79430048697C /* MJRefreshFooter.m in Sources */,
 				B9C673331B6F5E4C0048697C /* AppDelegate.m in Sources */,
+				B9D0B9761B87216500DFBEF3 /* UserInfoHelper.m in Sources */,
 				B9C674971B6F79430048697C /* NSDate+RFC1123.m in Sources */,
 				B9C674A71B6F79430048697C /* SSZipArchive.m in Sources */,
 				B953F7861B70AE56006263AE /* ZJSwitch.m in Sources */,

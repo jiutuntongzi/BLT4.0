@@ -26,6 +26,12 @@
 @property (nonatomic, strong) NSString *batteryValue;   // 电池电量
 @property (nonatomic, strong) NSString *boindFlag;      // 绑定标志
 
+// 设备时间 command_id:0x02 Key:0x03
+@property (nonatomic, strong) NSString *time;             // 设备时间
+@property (nonatomic, strong) NSString *weekDays;         // 设备星期
+
+//@property (nonatomic, assign) BOOL isPhotoControl;        // 是否拍照模式
+
 + (instancetype)initWithUUID:(NSString *)uuid;
 
 // 从数据库获取模型.

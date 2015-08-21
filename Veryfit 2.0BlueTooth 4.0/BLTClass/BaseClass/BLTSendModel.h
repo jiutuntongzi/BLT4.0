@@ -37,5 +37,18 @@ typedef enum
 // 获取设备信息 1 基本信息 2 支持功能 3 设备时间 4 获取mac地址 5 获取电池信息
 + (void)sendDeviceInfo:(BLTsendDeviceInfoType)type WithUpdateBlock:(BLTAcceptModelUpdateValue)block;
 
+// 时间设置.
++ (void)sendSetDeviceTimeWithUpdateBlock:(BLTAcceptModelUpdateValue)block;
+
+// 设置用户信息
++ (void)sendSetUserInfoWithUpdateBlock:(BLTAcceptModelUpdateValue)block;
+
+// 设置运动目标. 0722改一起设置睡眠
++ (void)sendSetSportTargetWithUpdateBlock:(BLTAcceptModelUpdateValue)block;
+
+// 设置睡眠目标.
++ (void)sendSetSleepTargetWithUpdateBlock:(BLTAcceptModelUpdateValue)block;
+
+- (void)updateDevice;
 
 @end

@@ -40,7 +40,7 @@
 - (void)loadTable
 {
     _titleArray = [[NSArray alloc] initWithObjects:@"绑定",@"解绑",@"开启拍照",@"关闭拍照",
-                   @"获取设备基本信息",@"获得设备时间",nil];
+                   @"获取设备基本信息",@"获得设备时间", @"更新所有信息",nil];
     [self reloadData];
     [self setExtraCellLineHidden:self];
 }

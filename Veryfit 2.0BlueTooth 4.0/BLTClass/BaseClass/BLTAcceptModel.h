@@ -8,6 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
+@protocol BLTControlTypeDelegate <NSObject>
+
+- (void)bltControlTakePhoto;
+
+@end
+
 @interface BLTAcceptModel : NSObject
 
 AS_SINGLETON(BLTAcceptModel)
@@ -28,14 +34,16 @@ typedef enum {                                     // 详细的看接口参数�
 //    
       BLTAcceptModelTypeDeviceInfo,                // 设备信息
       BLTAcceptModelTypeDeviceFunction,            // 设备支持功能
-      BLTAcceptModelTypeDeviceTime,                // 时间信息
-//    BLTAcceptModelTypeSetUserInfo,               // 用户信息
+      BLTAcceptModelTypeDeviceTime,                // 设备时间信息
+      BLTAcceptModelTypeSetDateInfo,               // 设置时间信息
+     
+      BLTAcceptModelTypeSetUserInfo,               // 用户信息
 //    BLTAcceptModelTypeSetAlarmClock,             // 设置闹钟
 //    BLTAcceptModelTypeSetRemind,                 // 设置久坐提醒
 //    
-//    BLTAcceptModelTypeSetSportTarget,            // 设置运动目标
-//    BLTAcceptModelTypeSetSleepTarget,            // 设置睡眠目标
-//    
+    BLTAcceptModelTypeSetSportTarget,            // 设置运动目标
+    BLTAcceptModelTypeSetSleepTarget,            // 设置睡眠目标
+//
 //    BLTAcceptModelTypeDataRequestSuccess,        // 数据请求成功
 //    BLTAcceptModelTypeDataTodaySport,            // 今天运动数据
 //    BLTAcceptModelTypeDataTodaySleep,            // 今天睡眠数据
@@ -63,8 +71,10 @@ typedef enum {                                     // 详细的看接口参数�
     
      /*手环控制*/
      BLTAcceptModelPhotoControl,
+     BLTAcceptModelPhotoControlFail,
      /*事件控制类型*/
      BLTAcceptModelPhotoControlType
+    
     
 } BLTAcceptModelType;
 
@@ -81,5 +91,6 @@ typedef void(^BLTAcceptModelUpdateValue)(id object, BLTAcceptModelType type);
 @property (nonatomic, assign) BLTAcceptModelType type;
 @property (nonatomic, assign) BLTAcceptModelDataType dataType;
 
+@property (nonatomic, strong) id <BLTControlTypeDelegate> BLTControlTDelegate;
 
 @end

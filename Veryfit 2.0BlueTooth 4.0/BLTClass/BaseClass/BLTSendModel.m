@@ -80,6 +80,47 @@ DEF_SINGLETON(BLTSendModel)
               withUpdate:block];
 }
 
+// 设置用户信息
++ (void)sendSetUserInfoWithUpdateBlock:(BLTAcceptModelUpdateValue)block
+{
+    UserInfoModel *model = [UserInfoHelper sharedInstance].userModel;
+    NSDate *date = [NSDate dateByString:model.birthDay];
+    
+    UInt8 val[10] = {0x03, 0x10, (NSInteger)model.height, (UInt8)(model.weight * 100), (UInt8)((NSInteger)(model.weight * 100) >> 8),
+        model.genderSex, (UInt8)(date.year), (UInt8)(date.year >> 8), date.month, date.day};
+    [self sendDataToWare:val
+              withLength:10
+              withUpdate:block];
+}
+
+// 时间设置.
++ (void)sendSetDeviceTimeWithUpdateBlock:(BLTAcceptModelUpdateValue)block
+{
+    NSDate *date = [NSDate date];
+    NSInteger weekDay = (date.weekday == 1) ? 6 : date.weekday - 2;
+    
+    UInt8 val[10] = {0x03, 0x01, (UInt8)date.year, date.year >> 8, date.month,
+        date.day, date.hour, date.minute, date.second, weekDay};
+    
+    [self sendDataToWare:val
+              withLength:10
+              withUpdate:block];
+}
+
+// 设置运动目标. 0722改一起设置睡眠
++ (void)sendSetSportTargetWithUpdateBlock:(BLTAcceptModelUpdateValue)block;
+{
+    NSInteger steps = [UserInfoHelper sharedInstance].userModel.targetSteps;
+    NSInteger sleep = [UserInfoHelper sharedInstance].userModel.targetSleep;
+    
+    UInt8 val[9] = {0x03, 0x03, 0x00, (UInt8)steps, (UInt8)(steps >> 8),
+        (UInt8)(steps >> 16), (UInt8)(steps >> 24), sleep / 60, sleep % 60};
+    [self sendDataToWare:val
+              withLength:9
+              withUpdate:block];
+}
+
+
 + (void)sendDataToWare:(UInt8 *)val
             withLength:(NSInteger)length
             withUpdate:(BLTAcceptModelUpdateValue)block

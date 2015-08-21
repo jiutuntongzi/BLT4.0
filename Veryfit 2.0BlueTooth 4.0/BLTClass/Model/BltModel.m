@@ -90,6 +90,54 @@
     [self updateCurrentModelToDB];
 }
 
+- (void)setDeviceID:(NSString *)deviceID
+{
+    _deviceID = deviceID;
+    [self updateCurrentModelToDB];
+}
+
+- (void)setFirmWare:(NSString *)firmWare
+{
+    _firmWare = firmWare;
+    [self updateCurrentModelToDB];
+}
+
+- (void)setRunType:(NSString *)runType
+{
+    _runType = runType;
+    [self updateCurrentModelToDB];
+}
+
+- (void)setBatteryState:(NSString *)batteryState
+{
+    _batteryState = batteryState;
+    [self updateCurrentModelToDB];
+}
+
+- (void)setBatteryValue:(NSString *)batteryValue
+{
+    _batteryValue = batteryValue;
+    [self updateCurrentModelToDB];
+}
+
+- (void)setBoindFlag:(NSString *)boindFlag
+{
+    _boindFlag = boindFlag;
+    [self updateCurrentModelToDB];
+}
+
+- (void)setTime:(NSString *)time
+{
+    _time = time;
+    [self updateCurrentModelToDB];
+}
+
+- (void)setWeekDays:(NSString *)weekDays
+{
+    _weekDays = weekDays;
+    [self updateCurrentModelToDB];
+}
+
 //- (void)
 
 // 主建

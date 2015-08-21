@@ -32,11 +32,29 @@
 #import "BLTAcceptModel.h"
 #import "BLTSendModel.h"
 
+// 用户模型
+#import "UserInfoModel.h"
+#import "UserInfoHelper.h"
+
 #import "NavLabel.h"
 #import "ZJSwitch.h"
 #import "NavButton.h"
 
 #endif
+
+
+// 默认用户名
+#define AJ_UserName @"User"
+#define AJ_DeviceName @"YDY_NRF_PROTOCOL"
+#define AJ_LastWareUUID @"AJ_LastWareUUID"
+#define AJ_FileCache_HeadImage @"HeadImage"
+#define AJ_LastWareVersion @"AJ_LastWareVersion"
+
+// 进入界面 保存用户完成key
+#define SAVEENTERUSERKEY @"SAVEENTERUSERKEY"
+
+// 保存第一次用户使用时间
+#define SAVEFIRSTUSERDATE @"SAVEFIRSTUSERDATE"
 
 // 是否测试模式
 #define ISTESTMODEL 1
