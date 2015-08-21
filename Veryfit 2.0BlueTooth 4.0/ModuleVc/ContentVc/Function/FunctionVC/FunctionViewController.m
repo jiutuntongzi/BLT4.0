@@ -124,6 +124,7 @@
                  [BLTManager sharedInstance].model.batteryState = DeviceInfo[3];
                  [BLTManager sharedInstance].model.batteryValue = DeviceInfo[4];
                  [BLTManager sharedInstance].model.boindFlag =DeviceInfo[5];
+                  SHOWMBProgressHUD(@"获取设备信息成功", nil, nil, NO, 0.5);
              }
          }];
     }
@@ -138,6 +139,7 @@
                  [BLTManager sharedInstance].model.time = timeArray[0];
                  [BLTManager sharedInstance].model.weekDays = timeArray[1];
                  [weakSelf updateViewData];
+                  SHOWMBProgressHUD(@"获取设备时间成功", nil, nil, NO, 0.5);
              }
          }];
     }
@@ -207,8 +209,7 @@
         [BLTSendModel sendSetSportTargetWithUpdateBlock:^(id object, BLTAcceptModelType type) {
             if (type == BLTAcceptModelTypeSetSportTarget)
             {
-            SHOWMBProgressHUD(@"目标设置成功.", nil, nil, NO, 2.0);
-
+            SHOWMBProgressHUD(@"目标设置成功.", nil, nil, NO, 0.5);
             }
         }];
     }
